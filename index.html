@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemática I - UNA | Aula Interactiva</title>
+    <!-- Google Identity Services (OAuth / Login) -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style>
+        :root {
+            --primary: #1b365d;
+            --secondary: #28527a;
+            --accent: #f8b400;
+            --bg: #f7f9fa;
+            --text: #2c3e50;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-sizing: border-box;
+            margin: 20px;
+        }
+        h1 { color: var(--primary); font-size: 1.5rem; margin-top: 0; }
+        h2 { color: var(--secondary); font-size: 1.2rem; }
+        .hidden { display: none !important; }
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            width: 100%;
+            margin-top: 15px;
+            transition: background 0.2s;
+        }
+        .btn:hover { background-color: var(--secondary); }
+        .card {
+            background: #f8f9fa;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .quiz-option {
+            display: block;
+            background: white;
+            border: 1px solid #dcdde1;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover { background: #eef2f7; border-color: var(--secondary); }
+        .quiz-option.selected { background: #d1e7dd; border-color: #0f5132; color: #0f5132; font-weight: bold; }
+        .progress-bar {
+            background: #e9ecef;
+            border-radius: 6px;
+            height: 10px;
+            width: 100%;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: var(--accent);
+            height: 100%;
+            width: 33%;
+            transition: width 0.3s ease;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .user-info span { font-size: 0.9rem; color: #666; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- VISTA 1: LOGIN CON GOOGLE -->
+        <div id="login-view" style="text-align: center; padding: 20px 0;">
+            <h1>Matemática I (UNA)</h1>
+            <p>Plataforma de Aprendizaje Interactivo - Objetivo I.1</p>
+            <div style="margin: 30px 0; display: flex; justify-content: center;">
+                <div id="g_id_onload"
+                     data-client_id="TU_CLIENT_ID_DE_GOOGLE.apps.googleusercontent.com"
+                     data-callback="handleCredentialResponse"
+                     data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-size="large"
+                     data-theme="outline"
+                     data-text="sign_in_with"
+                     data-shape="rectangular"
+                     data-logo_alignment="left">
+                </div>
+            </div>
+            <p style="font-size: 0.85rem; color: #888;">Inicia sesión con tu cuenta de Google para registrar tu avance de forma segura.</p>
+        </div>
+
+        <!-- VISTA 2: PANEL DE APRENDIZAJE (DASHBOARD) -->
+        <div id="app-view" class="hidden">
+            <div class="user-info">
+                <div>
+                    <h2 id="welcome-user" style="margin:0;">Hola</h2>
+                    <span id="user-email">correo@</span>
+                </div>
+                <div>🔥 <span id="streak">1</span> día</div>
+            </div>
+
+            <div>
+                <span>Progreso Unidad I: Objetivo I.1</span>
+                <div class="progress-bar"><div class="progress-fill" id="p-fill"></div></div>
+            </div>
+
+            <div id="lesson-container">
+                <h2>Lección 1: Conjuntos Numéricos ($\mathbb{N}, \mathbb{Z}, \mathbb{Q}$)</h2>
+                <div class="card">
+                    <p><strong>¿Sabías qué?</strong> Los números naturales ($\mathbb{N}$) sirven para contar objetos, los enteros ($\mathbb{Z}$) incluyen las deudas o temperaturas bajo cero, y los racionales ($\mathbb{Q}$) son las fracciones y proporciones del día a día (como repartir un presupuesto).</p>
+                </div>
+                <button class="btn" onclick="startQuiz()">Ir al Mini-Quiz del Objetivo</button>
+            </div>
+
+            <div id="quiz-container" class="hidden">
+                <h2>Evaluación Formativa (Objetivo I.1)</h2>
+                <p>¿A qué conjunto numérico pertenece el número <strong>-5</strong>?</p>
+                <div class="quiz-option" onclick="selectOption(this, false)">A) Solo a los Naturales ($\mathbb{N}$)</div>
+                <div class="quiz-option" onclick="selectOption(this, true)">B) A los Enteros ($\mathbb{Z}$) y Racionales ($\mathbb{Q}$)</div>
+                <div class="quiz-option" onclick="selectOption(this, false)">C) Solo a los Irracionales</div>
+                <button class="btn" id="submit-btn" onclick="submitQuiz()" disabled>Enviar Respuesta</button>
+            </div>
+
+            <div id="result-container" class="hidden" style="text-align: center;">
+                <h2>¡Excelente trabajo!</h2>
+                <p id="result-message">Tu respuesta ha sido registrada con éxito en el sistema de la cátedra.</p>
+                <button class="btn" onclick="resetApp()">Repasar de nuevo</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Reemplaza esta URL con la que te dio Google Apps Script al desplegar
+        const WEB_APP_URL = "https://script.google.com/macros/s/TU_SCRIPT_ID/exec";
+        
+        let currentUser = {};
+        let selectedAnswerCorrect = false;
+
+        // Decodificar el token de Google OAuth
+        function parseJwt(token) {
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+                patron = '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                return patron;
+            }).join(''));
+            return JSON.parse(jsonPayload);
+        }
+
+        function handleCredentialResponse(response) {
+            const responsePayload = parseJwt(response.credential);
+            currentUser = {
+                name: responsePayload.name,
+                email: responsePayload.email
+            };
+
+            // Cambiar de vista
+            document.getElementById('login-view').classList.add('hidden');
+            document.getElementById('app-view').classList.remove('hidden');
+            document.getElementById('welcome-user').innerText = `Hola, ${currentUser.name}`;
+            document.getElementById('user-email').innerText = currentUser.email;
+        }
+
+        function startQuiz() {
+            document.getElementById('lesson-container').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('p-fill').style.width = '66%';
+        }
+
+        function selectOption(element, isCorrect) {
+            document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedAnswerCorrect = isCorrect;
+            document.getElementById('submit-btn').disabled = false;
+        }
+
+        function submitQuiz() {
+            const score = selectedAnswerCorrect ? 100 : 50;
+            const status = selectedAnswerCorrect ? "Aprobado" : "En proceso";
+
+            // Enviar datos al Google Sheet mediante Apps Script
+            const payload = {
+                email: currentUser.email,
+                name: currentUser.name,
+                unit: "Unidad I - Objetivo 1.1",
+                score: score,
+                status: status
+            };
+
+            fetch(WEB_APP_URL, {
+                method: "POST",
+                mode: "no-cors", // Requerido para llamadas directas a Apps Script desde el cliente
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            }).then(() => {
+                document.getElementById('quiz-container').classList.add('hidden');
+                document.getElementById('result-container').classList.remove('hidden');
+                document.getElementById('p-fill').style.width = '100%';
+            }).catch(err => {
+                alert("Error al guardar el progreso. Inténtalo de nuevo.");
+            });
+        }
+
+        function resetApp() {
+            document.getElementById('result-container').classList.add('hidden');
+            document.getElementById('lesson-container').classList.remove('hidden');
+            document.getElementById('p-fill').style.width = '33%';
+            document.getElementById('submit-btn').disabled = true;
+            document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+        }
+    </script>
+</body>
+</html>
