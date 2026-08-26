@@ -7,6 +7,18 @@ let allQuestions = [];
 let sessionStartTime = null;
 let timerInterval = null;
 
+const siteContent = {
+    fundamentacion: {
+        title: "Fundamentación de la Materia",
+        html: `<p>Aquí va todo el texto correspondiente a la fundamentación institucional de la UNA...</p>`
+    },
+    plan: {
+        title: "Plan de Curso",
+        html: `<p>Detalle de los objetivos, unidades y estrategias de evaluación...</p>`
+    },
+    // Y así sucesivamente para cada sección...
+};
+
 function decodeJwtResponse(token) {
     let base64Url = token.split('.')[1];
     let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -174,6 +186,7 @@ function logout() {
     if(timerInterval) clearInterval(timerInterval);
     location.reload();
 }
+
 
 function showSection(sectionKey) {
     const container = document.getElementById('dynamic-view');
