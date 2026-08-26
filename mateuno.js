@@ -281,7 +281,7 @@ function showSection(sectionKey) {
     container.innerHTML = `<h2 class="text-xl font-bold text-blue-900 mb-4">${title}</h2><p class="text-slate-400 text-sm">Cargando datos desde Google Sheets...</p>`;
     try {
         // Reemplaza esta URL con la Web App desplegada de tu Google Apps Script que lee las pestañas
-        const response = await fetch(`TU_WEB_APP_APPS_SCRIPT_URL?sheet=${sheetName}`);
+        const response = await fetch(`https://script.google.com/macros/s/AKfycbxOri0ezwTylp72XjXnVpGapuSw-2E8e-rKbi8IcttwxlwbPAP4SQSxJMPv8so8S4kK/exec?sheet=${sheetName}`);
         const data = await response.json();
         
         if (!data || data.length === 0) {
