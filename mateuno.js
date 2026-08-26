@@ -77,7 +77,7 @@ function switchObjective(objNum) {
 }
 
 function loadQuestionsForCurrentObjective() {
-    const filtered = allQuestions.filter(q => q.objective === currentObjective);
+    const filtered = allQuestions.filter(q => String(q.objective).trim() === String(currentObjective).trim());
     document.getElementById('obj-title').innerText = `Objetivo ${currentObjective}`;
     
     const container = document.getElementById('options-container');
