@@ -174,3 +174,22 @@ function logout() {
     if(timerInterval) clearInterval(timerInterval);
     location.reload();
 }
+
+function showSection(sectionKey) {
+    const container = document.getElementById('dynamic-view');
+    if (sectionKey === 'inicio') {
+        // Vuelve a cargar la vista normal del Quiz y el cronómetro
+        loadQuizView(); 
+        return;
+    }
+    
+    const content = siteContent[sectionKey];
+    if (content) {
+        container.innerHTML = `
+            <div class="content-card animate-fade">
+                <h2>${content.title}</h2>
+                ${content.html}
+            </div>
+        `;
+    }
+}
