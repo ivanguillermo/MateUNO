@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MateUNA - Unidad I</title>
-    <!-- Tailwind CSS para un diseño limpio y profesional -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Identity Services (OAuth) -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
@@ -40,38 +38,36 @@
             </div>
         </div>
 
-        <!-- CONTENEDOR DE OBJETIVOS (Oculto hasta iniciar sesión) -->
+        <!-- CONTENEDOR DE OBJETIVOS -->
         <div id="app-container" class="hidden space-y-6">
             
             <!-- Selector de Objetivos -->
             <div class="flex gap-2 border-b pb-4 overflow-x-auto">
-                <button onclick="switchObjective(1)" id="btn-obj-1" class="px-4 py-2 bg-blue-900 text-white rounded-lg font-medium text-sm transition">Obj. 1.1: Reales</button>
-                <button onclick="switchObjective(2)" id="btn-obj-2" class="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg font-medium text-sm transition">Obj. 1.2: Desigualdades</button>
-                <button onclick="switchObjective(3)" id="btn-obj-3" class="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg font-medium text-sm transition">Obj. 1.3: Valor Absoluto</button>
+                <button onclick="switchObjective('1.1')" id="btn-obj-1.1" class="px-4 py-2 bg-blue-900 text-white rounded-lg font-medium text-sm transition">Obj. 1.1</button>
+                <button onclick="switchObjective('1.2')" id="btn-obj-1.2" class="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg font-medium text-sm transition">Obj. 1.2</button>
+                <button onclick="switchObjective('1.3')" id="btn-obj-1.3" class="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg font-medium text-sm transition">Obj. 1.3</button>
             </div>
 
             <!-- Tarjeta de Pregunta -->
             <div class="bg-white p-6 rounded-2xl shadow-sm">
                 <div class="flex justify-between items-center mb-4">
-                    <span id="obj-title" class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Objetivo 1.1</span>
+                    <span id="obj-title" class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Cargando...</span>
                     <span class="text-xs text-slate-400">Evaluación Formativa</span>
                 </div>
 
-                <p id="question-text" class="text-lg font-medium text-slate-800 mb-6">¿A qué conjunto numérico pertenece el número -5?</p>
+                <p id="question-text" class="text-lg font-medium text-slate-800 mb-6">Conectando con la base de datos...</p>
 
                 <!-- Opciones de Respuesta -->
-                <div id="options-container" class="space-y-3 mb-6">
-                    <!-- Se llena dinámicamente -->
-                </div>
+                <div id="options-container" class="space-y-3 mb-6"></div>
 
                 <button id="submit-btn" onclick="submitQuiz()" disabled class="w-full bg-slate-300 text-white font-medium py-3 rounded-xl transition cursor-not-allowed">Enviar Respuesta</button>
             </div>
 
-            <!-- Contenedor de Resultado (Oculto por defecto) -->
+            <!-- Contenedor de Resultado -->
             <div id="result-container" class="hidden bg-emerald-50 border border-emerald-200 p-6 rounded-2xl text-center">
                 <h3 class="text-xl font-bold text-emerald-800 mb-2">¡Respuesta Registrada con Éxito!</h3>
                 <p class="text-emerald-600 text-sm mb-4">Tu progreso ha sido guardado en la base de datos de la cátedra.</p>
-                <button onclick="resetQuiz()" class="bg-emerald-600 text-white px-6 py-2 rounded-xl text-sm font-medium hover:bg-emerald-700 transition">Siguiente Pregunta / Repasar</button>
+                <button onclick="loadQuestionsForCurrentObjective()" class="bg-emerald-600 text-white px-6 py-2 rounded-xl text-sm font-medium hover:bg-emerald-700 transition">Siguiente Pregunta / Repasar</button>
             </div>
 
         </div>
@@ -87,38 +83,8 @@
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbydZ8qCZI_2oiBU1cyWAPpMoOTUzW4yQm3qkCFicYa-wWXhC90F-_C_esuhusVczlaG/exec";
         let currentUser = null;
         let selectedAnswerCorrect = null;
-        let currentObjective = 1;
-
-        // Base de datos de preguntas por objetivo
-        const objectivesData = {
-            1: {
-                title: "Objetivo 1.1",
-                question: "¿A qué conjunto numérico pertenece el número -5?",
-                options: [
-                    { text: "A) Solo a los Naturales", correct: false },
-                    { text: "B) A los Enteros y Racionales", correct: true },
-                    { text: "C) Solo a los Irracionales", correct: false }
-                ]
-            },
-            2: {
-                title: "Objetivo 1.2",
-                question: "Al resolver la desigualdad lineal 3x - 5 > 7, el conjunto solución es:",
-                options: [
-                    { text: "A) (4, +∞)", correct: true },
-                    { text: "B) (-∞, 4)", correct: false },
-                    { text: "C) [4, +∞)", correct: false }
-                ]
-            },
-            3: {
-                title: "Objetivo 1.3",
-                question: "La expresión |x - 3| ≤ 5 es equivalente a:",
-                options: [
-                    { text: "A) -5 ≤ x ≤ 5", correct: false },
-                    { text: "B) -2 ≤ x ≤ 8", correct: true },
-                    { text: "C) x ≥ 8 o x ≤ -2", correct: false }
-                ]
-            }
-        };
+        let currentObjective = "1.1";
+        let allQuestions = [];
 
         function decodeJwtResponse(token) {
             let base64Url = token.split('.')[1];
@@ -136,38 +102,81 @@
                 email: responsePayload.email
             };
 
-            // Ocultar login y mostrar la app correctamente
             document.getElementById('login-prompt').classList.add('hidden');
             document.getElementById('auth-section').classList.add('hidden');
             document.getElementById('user-info').classList.remove('hidden');
             document.getElementById('user-name').innerText = `Hola, ${responsePayload.name}`;
             document.getElementById('app-container').classList.remove('hidden');
             
-            loadObjective(1);
+            fetchQuestions();
+        }
+
+        // Descargar preguntas desde Google Sheets
+        function fetchQuestions() {
+            document.getElementById('question-text').innerText = "Cargando preguntas desde la nube...";
+            fetch(WEB_APP_URL)
+                .then(res => res.json())
+                .then(data => {
+                    if(Array.isArray(data)) {
+                        allQuestions = data;
+                        loadQuestionsForCurrentObjective();
+                    } else {
+                        document.getElementById('question-text').innerText = "Error al cargar las preguntas. Verifica la pestaña 'Preguntas'.";
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    document.getElementById('question-text').innerText = "Error de conexión con el servidor.";
+                });
         }
 
         function switchObjective(objNum) {
             currentObjective = objNum;
-            for(let i=1; i<=3; i++) {
-                const btn = document.getElementById(`btn-obj-${i}`);
-                if(i === objNum) {
+            ["1.1", "1.2", "1.3"].forEach(id => {
+                const btn = document.getElementById(`btn-obj-${id}`);
+                if(id === objNum) {
                     btn.className = "px-4 py-2 bg-blue-900 text-white rounded-lg font-medium text-sm transition";
                 } else {
                     btn.className = "px-4 py-2 bg-slate-200 text-slate-700 rounded-lg font-medium text-sm transition";
                 }
-            }
-            loadObjective(objNum);
+            });
+            loadQuestionsForCurrentObjective();
         }
 
-        function loadObjective(objNum) {
-            const data = objectivesData[objNum];
-            document.getElementById('obj-title').innerText = data.title;
-            document.getElementById('question-text').innerText = data.question;
+        function loadQuestionsForCurrentObjective() {
+            const filtered = allQuestions.filter(q => q.objective === currentObjective);
+            document.getElementById('obj-title').innerText = `Objetivo ${currentObjective}`;
             
             const container = document.getElementById('options-container');
             container.innerHTML = "";
-            
-            data.options.forEach((opt) => {
+            document.getElementById('result-container').classList.add('hidden');
+
+            if (filtered.length === 0) {
+                document.getElementById('question-text').innerText = "No hay preguntas cargadas para este objetivo en la hoja de cálculo.";
+                document.getElementById('submit-btn').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('submit-btn').style.display = 'block';
+
+            // Seleccionar una pregunta aleatoria de las disponibles para este objetivo
+            const qData = filtered[Math.floor(Math.random() * filtered.length)];
+            document.getElementById('question-text').innerText = qData.question;
+
+            // Preparar opciones (1 correcta, 2 incorrectas) y ordenarlas aleatoriamente
+            let optionsArray = [
+                { text: qData.correct, correct: true },
+                { text: qData.incorrect1, correct: false },
+                { text: qData.incorrect2, correct: false }
+            ];
+
+            // Algoritmo de mezcla aleatoria (Fisher-Yates shuffle)
+            for (let i = optionsArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [optionsArray[i], optionsArray[j]] = [optionsArray[j], optionsArray[i]];
+            }
+
+            optionsArray.forEach((opt) => {
                 const btn = document.createElement('button');
                 btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 hover:border-blue-500 transition option-btn";
                 btn.innerText = opt.text;
@@ -175,7 +184,6 @@
                 container.appendChild(btn);
             });
 
-            document.getElementById('result-container').classList.add('hidden');
             selectedAnswerCorrect = null;
             const submitBtn = document.getElementById('submit-btn');
             submitBtn.disabled = true;
@@ -201,7 +209,7 @@
             const payload = {
                 email: currentUser.email,
                 name: currentUser.name,
-                unit: `Unidad I - Objetivo 1.${currentObjective}`,
+                unit: `Unidad I - Objetivo ${currentObjective}`,
                 score: score,
                 status: status
             };
@@ -223,10 +231,6 @@
                 document.getElementById('result-container').classList.remove('hidden');
                 btn.innerText = "Enviar Respuesta";
             });
-        }
-
-        function resetQuiz() {
-            loadObjective(currentObjective);
         }
 
         function logout() {
