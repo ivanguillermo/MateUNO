@@ -61,9 +61,7 @@
 
                 <!-- Opciones de Respuesta -->
                 <div id="options-container" class="space-y-3 mb-6">
-                    <button onclick="selectOption(this, false)" class="w-full text-left p-4 rounded-xl border border-slate-200 hover:border-blue-500 transition option-btn">A) Solo a los Naturales ($\mathbb{N}$)</button>
-                    <button onclick="selectOption(this, true)" class="w-full text-left p-4 rounded-xl border border-slate-200 hover:border-blue-500 transition option-btn">B) A los Enteros ($\mathbb{Z}$) y Racionales ($\mathbb{Q}$)</button>
-                    <button onclick="selectOption(this, false)" class="w-full text-left p-4 rounded-xl border border-slate-200 hover:border-blue-500 transition option-btn">C) Solo a los Irracionales</button>
+                    <!-- Se llena dinámicamente -->
                 </div>
 
                 <button id="submit-btn" onclick="submitQuiz()" disabled class="w-full bg-slate-300 text-white font-medium py-3 rounded-xl transition cursor-not-allowed">Enviar Respuesta</button>
@@ -126,7 +124,7 @@
             let base64Url = token.split('.')[1];
             let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
             let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-                return '%' + (''.charCodeAt(0).toString(16)).slice(-2);
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
             }).join(''));
             return JSON.parse(jsonPayload);
         }
@@ -138,17 +136,18 @@
                 email: responsePayload.email
             };
 
+            // Ocultar login y mostrar la app correctamente
             document.getElementById('login-prompt').classList.add('hidden');
             document.getElementById('auth-section').classList.add('hidden');
             document.getElementById('user-info').classList.remove('hidden');
             document.getElementById('user-name').innerText = `Hola, ${responsePayload.name}`;
             document.getElementById('app-container').classList.remove('hidden');
+            
             loadObjective(1);
         }
 
         function switchObjective(objNum) {
             currentObjective = objNum;
-            // Actualizar estilos de pestañas
             for(let i=1; i<=3; i++) {
                 const btn = document.getElementById(`btn-obj-${i}`);
                 if(i === objNum) {
@@ -177,7 +176,6 @@
             });
 
             document.getElementById('result-container').classList.add('hidden');
-            document.querySelector('#app-container > div:nth-child(2)').classList.remove('hidden');
             selectedAnswerCorrect = null;
             const submitBtn = document.getElementById('submit-btn');
             submitBtn.disabled = true;
