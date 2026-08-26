@@ -3,207 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matemática I - UNA | Aula Interactiva</title>
-    <!-- Google Identity Services (OAuth / Login) -->
+    <title>MateUNA - Unidad I</title>
+    <!-- Tailwind CSS para un diseño limpio y profesional -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Identity Services (OAuth) -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <style>
-        :root {
-            --primary: #1b365d;
-            --secondary: #28527a;
-            --accent: #f8b400;
-            --bg: #f7f9fa;
-            --text: #2c3e50;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            width: 100%;
-            max-width: 600px;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            box-sizing: border-box;
-            margin: 20px;
-        }
-        h1 { color: var(--primary); font-size: 1.5rem; margin-top: 0; }
-        h2 { color: var(--secondary); font-size: 1.2rem; }
-        .hidden { display: none !important; }
-        .btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1rem;
-            width: 100%;
-            margin-top: 15px;
-            transition: background 0.2s;
-        }
-        .btn:hover { background-color: var(--secondary); }
-        .card {
-            background: #f8f9fa;
-            border-left: 4px solid var(--accent);
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 6px 6px 0;
-        }
-        .quiz-option {
-            display: block;
-            background: white;
-            border: 1px solid #dcdde1;
-            padding: 10px 15px;
-            margin: 8px 0;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .quiz-option:hover { background: #eef2f7; border-color: var(--secondary); }
-        .quiz-option.selected { background: #d1e7dd; border-color: #0f5132; color: #0f5132; font-weight: bold; }
-        .progress-bar {
-            background: #e9ecef;
-            border-radius: 6px;
-            height: 10px;
-            width: 100%;
-            margin: 15px 0;
-            overflow: hidden;
-        }
-        .progress-fill {
-            background: var(--accent);
-            height: 100%;
-            width: 33%;
-            transition: width 0.3s ease;
-        }
-        .user-info {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        .user-info span { font-size: 0.9rem; color: #666; }
-    </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
 
-    <div class="container">
-        <!-- VISTA 1: LOGIN CON GOOGLE -->
-        <div id="login-view" style="text-align: center; padding: 20px 0;">
-            <h1>Matemática I (UNA)</h1>
-            <p>Plataforma de Aprendizaje Interactivo - Objetivo I.1</p>
-            <div style="margin: 30px 0; display: flex; justify-content: center;">
-                <div id="g_id_onload"
-                     data-client_id="205229444634-85v2gua4tv360jnn02bj5d68uhrb2e85.apps.googleusercontent.com"
-                     data-callback="handleCredentialResponse"
-                     data-auto_prompt="false">
-                </div>
-                <div class="g_id_signin"
-                     data-type="standard"
-                     data-size="large"
-                     data-theme="outline"
-                     data-text="sign_in_with"
-                     data-shape="rectangular"
-                     data-logo_alignment="left">
-                </div>
+    <!-- HEADER / LOGIN -->
+    <header class="bg-white shadow-sm py-4 px-6 flex justify-between items-center">
+        <h1 class="text-xl font-bold text-blue-900">MateUNA | Matemática I</h1>
+        <div id="auth-section">
+            <div id="g_id_onload"
+                 data-client_id="205229444634-85v2gua4tv360jnn02bj5d68uhrb2e85.apps.googleusercontent.com"
+                 data-callback="handleCredentialResponse"
+                 data-auto_prompt="false">
             </div>
-            <p style="font-size: 0.85rem; color: #888;">Inicia sesión con tu cuenta de Google para registrar tu avance de forma segura.</p>
+            <div class="g_id_signin" data-type="standard"></div>
         </div>
-
-        <!-- VISTA 2: PANEL DE APRENDIZAJE (DASHBOARD) -->
-        <div id="app-view" class="hidden">
-            <div class="user-info">
-                <div>
-                    <h2 id="welcome-user" style="margin:0;">Hola</h2>
-                    <span id="user-email">correo@</span>
-                </div>
-                <div>🔥 <span id="streak">1</span> día</div>
-            </div>
-
-            <div>
-                <span>Progreso Unidad I: Objetivo I.1</span>
-                <div class="progress-bar"><div class="progress-fill" id="p-fill"></div></div>
-            </div>
-
-            <div id="lesson-container">
-                <h2>Lección 1: Conjuntos Numéricos ($\mathbb{N}, \mathbb{Z}, \mathbb{Q}$)</h2>
-                <div class="card">
-                    <p><strong>¿Sabías qué?</strong> Los números naturales ($\mathbb{N}$) sirven para contar objetos, los enteros ($\mathbb{Z}$) incluyen las deudas o temperaturas bajo cero, y los racionales ($\mathbb{Q}$) son las fracciones y proporciones del día a día (como repartir un presupuesto).</p>
-                </div>
-                <button class="btn" onclick="startQuiz()">Ir al Mini-Quiz del Objetivo</button>
-            </div>
-
-            <div id="quiz-container" class="hidden">
-                <h2>Evaluación Formativa (Objetivo I.1)</h2>
-                <p>¿A qué conjunto numérico pertenece el número <strong>-5</strong>?</p>
-                <div class="quiz-option" onclick="selectOption(this, false)">A) Solo a los Naturales ($\mathbb{N}$)</div>
-                <div class="quiz-option" onclick="selectOption(this, true)">B) A los Enteros ($\mathbb{Z}$) y Racionales ($\mathbb{Q}$)</div>
-                <div class="quiz-option" onclick="selectOption(this, false)">C) Solo a los Irracionales</div>
-                <button class="btn" id="submit-btn" onclick="submitQuiz()" disabled>Enviar Respuesta</button>
-            </div>
-
-            <div id="result-container" class="hidden" style="text-align: center;">
-                <h2>¡Excelente trabajo!</h2>
-                <p id="result-message">Tu respuesta ha sido registrada con éxito en el sistema de la cátedra.</p>
-                <button class="btn" onclick="resetApp()">Repasar de nuevo</button>
-            </div>
+        <div id="user-info" class="hidden flex items-center gap-3">
+            <span id="user-name" class="font-medium text-sm"></span>
+            <button onclick="logout()" class="text-xs text-red-600 hover:underline">Salir</button>
         </div>
-    </div>
+    </header>
 
-    <script>
-        // Reemplaza esta URL con la que te dio Google Apps Script al desplegar
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbydZ8qCZI_2oiBU1cyWAPpMoOTUzW4yQm3qkCFicYa-wWXhC90F-_C_esuhusVczlaG/exec";
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="max-w-3xl mx-auto p-6 flex-grow w-full">
         
-        let currentUser = {};
-        let selectedAnswerCorrect = false;
+        <!-- PANTALLA DE ACCESO RESTRINGIDO -->
+        <div id="login-prompt" class="bg-white p-8 rounded-2xl shadow-sm text-center my-12">
+            <h2 class="text-2xl font-bold mb-3 text-slate-700">Bienvenido a la plataforma de aprendizaje</h2>
+            <p class="text-slate-500 mb-6">Inicia sesión con tu cuenta de Google para acceder a las evaluaciones formativas de la Unidad I.</p>
+            <div class="flex justify-center">
+                <div class="g_id_signin" data-type="standard"></div>
+            </div>
+        </div>
 
-        // Decodificar el token de Google OAuth
-        function parseJwt(token) {
-            var base64Url = token.split('.')[1];
-            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-                patron = '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-                return patron;
+        <!-- CONTENEDOR DE OBJETIVOS (Oculto hasta iniciar sesión) -->
+        <div id="app-container" class="hidden space-y-6">
+            
+            <!-- Selector de Objetivos -->
+            <div class="flex gap-2 border-b pb-4 overflow-x-auto">
+                <button onclick="switchObjective(1)" id="btn-obj-1" class="px-4 py-2 bg-blue-900 text-white rounded-lg font-medium text-sm transition">Obj. 1.1: Reales</button>
+                <button onclick="switchObjective(2)" id="btn-obj-2" class="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg font-medium text-sm transition">Obj. 1.2: Desigualdades</button>
+                <button onclick="switchObjective(3)" id="btn-obj-3" class="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg font-medium text-sm transition">Obj. 1.3: Valor Absoluto</button>
+            </div>
+
+            <!-- Tarjeta de Pregunta -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm">
+                <div class="flex justify-between items-center mb-4">
+                    <span id="obj-title" class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Objetivo 1.1</span>
+                    <span class="text-xs text-slate-400">Evaluación Formativa</span>
+                </div>
+
+                <p id="question-text" class="text-lg font-medium text-slate-800 mb-6">¿A qué conjunto numérico pertenece el número -5?</p>
+
+                <!-- Opciones de Respuesta -->
+                <div id="options-container" class="space-y-3 mb-6">
+                    <button onclick="selectOption(this, false)" class="w-full text-left p-4 rounded-xl border border-slate-200 hover:border-blue-500 transition option-btn">A) Solo a los Naturales ($\mathbb{N}$)</button>
+                    <button onclick="selectOption(this, true)" class="w-full text-left p-4 rounded-xl border border-slate-200 hover:border-blue-500 transition option-btn">B) A los Enteros ($\mathbb{Z}$) y Racionales ($\mathbb{Q}$)</button>
+                    <button onclick="selectOption(this, false)" class="w-full text-left p-4 rounded-xl border border-slate-200 hover:border-blue-500 transition option-btn">C) Solo a los Irracionales</button>
+                </div>
+
+                <button id="submit-btn" onclick="submitQuiz()" disabled class="w-full bg-slate-300 text-white font-medium py-3 rounded-xl transition cursor-not-allowed">Enviar Respuesta</button>
+            </div>
+
+            <!-- Contenedor de Resultado (Oculto por defecto) -->
+            <div id="result-container" class="hidden bg-emerald-50 border border-emerald-200 p-6 rounded-2xl text-center">
+                <h3 class="text-xl font-bold text-emerald-800 mb-2">¡Respuesta Registrada con Éxito!</h3>
+                <p class="text-emerald-600 text-sm mb-4">Tu progreso ha sido guardado en la base de datos de la cátedra.</p>
+                <button onclick="resetQuiz()" class="bg-emerald-600 text-white px-6 py-2 rounded-xl text-sm font-medium hover:bg-emerald-700 transition">Siguiente Pregunta / Repasar</button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-6 text-xs text-slate-400 border-t">
+        Universidad Nacional Abierta (UNA) • Centro Local Yaracuy • Pasantías 2026
+    </footer>
+
+    <!-- SCRIPT DE LÓGICA -->
+    <script>
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbydZ8qCZI_2oiBU1cyWAPpMoOTUzW4yQm3qkCFicYa-wWXhC90F-_C_esuhusVczlaG/exec";
+        let currentUser = null;
+        let selectedAnswerCorrect = null;
+        let currentObjective = 1;
+
+        // Base de datos de preguntas por objetivo
+        const objectivesData = {
+            1: {
+                title: "Objetivo 1.1",
+                question: "¿A qué conjunto numérico pertenece el número -5?",
+                options: [
+                    { text: "A) Solo a los Naturales", correct: false },
+                    { text: "B) A los Enteros y Racionales", correct: true },
+                    { text: "C) Solo a los Irracionales", correct: false }
+                ]
+            },
+            2: {
+                title: "Objetivo 1.2",
+                question: "Al resolver la desigualdad lineal 3x - 5 > 7, el conjunto solución es:",
+                options: [
+                    { text: "A) (4, +∞)", correct: true },
+                    { text: "B) (-∞, 4)", correct: false },
+                    { text: "C) [4, +∞)", correct: false }
+                ]
+            },
+            3: {
+                title: "Objetivo 1.3",
+                question: "La expresión |x - 3| ≤ 5 es equivalente a:",
+                options: [
+                    { text: "A) -5 ≤ x ≤ 5", correct: false },
+                    { text: "B) -2 ≤ x ≤ 8", correct: true },
+                    { text: "C) x ≥ 8 o x ≤ -2", correct: false }
+                ]
+            }
+        };
+
+        function decodeJwtResponse(token) {
+            let base64Url = token.split('.')[1];
+            let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                return '%' + (''.charCodeAt(0).toString(16)).slice(-2);
             }).join(''));
             return JSON.parse(jsonPayload);
         }
 
         function handleCredentialResponse(response) {
-            const responsePayload = parseJwt(response.credential);
+            const responsePayload = decodeJwtResponse(response.credential);
             currentUser = {
                 name: responsePayload.name,
                 email: responsePayload.email
             };
 
-            // Cambiar de vista
-            document.getElementById('login-view').classList.add('hidden');
-            document.getElementById('app-view').classList.remove('hidden');
-            document.getElementById('welcome-user').innerText = `Hola, ${currentUser.name}`;
-            document.getElementById('user-email').innerText = currentUser.email;
+            document.getElementById('login-prompt').classList.add('hidden');
+            document.getElementById('auth-section').classList.add('hidden');
+            document.getElementById('user-info').classList.remove('hidden');
+            document.getElementById('user-name').innerText = `Hola, ${responsePayload.name}`;
+            document.getElementById('app-container').classList.remove('hidden');
+            loadObjective(1);
         }
 
-        function startQuiz() {
-            document.getElementById('lesson-container').classList.add('hidden');
-            document.getElementById('quiz-container').classList.remove('hidden');
-            document.getElementById('p-fill').style.width = '66%';
+        function switchObjective(objNum) {
+            currentObjective = objNum;
+            // Actualizar estilos de pestañas
+            for(let i=1; i<=3; i++) {
+                const btn = document.getElementById(`btn-obj-${i}`);
+                if(i === objNum) {
+                    btn.className = "px-4 py-2 bg-blue-900 text-white rounded-lg font-medium text-sm transition";
+                } else {
+                    btn.className = "px-4 py-2 bg-slate-200 text-slate-700 rounded-lg font-medium text-sm transition";
+                }
+            }
+            loadObjective(objNum);
         }
 
-        function selectOption(element, isCorrect) {
-            document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
-            element.classList.add('selected');
+        function loadObjective(objNum) {
+            const data = objectivesData[objNum];
+            document.getElementById('obj-title').innerText = data.title;
+            document.getElementById('question-text').innerText = data.question;
+            
+            const container = document.getElementById('options-container');
+            container.innerHTML = "";
+            
+            data.options.forEach((opt) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 hover:border-blue-500 transition option-btn";
+                btn.innerText = opt.text;
+                btn.onclick = () => selectOption(btn, opt.correct);
+                container.appendChild(btn);
+            });
+
+            document.getElementById('result-container').classList.add('hidden');
+            document.querySelector('#app-container > div:nth-child(2)').classList.remove('hidden');
+            selectedAnswerCorrect = null;
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.className = "w-full bg-slate-300 text-white font-medium py-3 rounded-xl transition cursor-not-allowed";
+        }
+
+        function selectOption(button, isCorrect) {
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('border-blue-500', 'bg-blue-50', 'font-medium');
+            });
+            button.classList.add('border-blue-500', 'bg-blue-50', 'font-medium');
             selectedAnswerCorrect = isCorrect;
-            document.getElementById('submit-btn').disabled = false;
+
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = false;
+            submitBtn.className = "w-full bg-blue-900 hover:bg-blue-800 text-white font-medium py-3 rounded-xl transition shadow-sm cursor-pointer";
         }
 
         function submitQuiz() {
@@ -213,44 +203,36 @@
             const payload = {
                 email: currentUser.email,
                 name: currentUser.name,
-                unit: "Unidad I - Objetivo 1.1",
+                unit: `Unidad I - Objetivo 1.${currentObjective}`,
                 score: score,
                 status: status
             };
 
-            // Cambiamos temporalmente el texto del botón para dar retroalimentación visual
             const btn = document.getElementById('submit-btn');
             btn.innerText = "Enviando...";
             btn.disabled = true;
 
-            // Envío con manejo de errores robusto
             fetch(WEB_APP_URL, {
                 method: "POST",
                 mode: "no-cors",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload)
             }).then(() => {
-                // Forzamos el cambio de vista de inmediato
-                document.getElementById('quiz-container').classList.add('hidden');
                 document.getElementById('result-container').classList.remove('hidden');
-                document.getElementById('p-fill').style.width = '100%';
                 btn.innerText = "Enviar Respuesta";
             }).catch(err => {
                 console.error(err);
-                // Aunque haya bloqueo CORS de red, permitimos que el estudiante avance
-                document.getElementById('quiz-container').classList.add('hidden');
                 document.getElementById('result-container').classList.remove('hidden');
-                document.getElementById('p-fill').style.width = '100%';
                 btn.innerText = "Enviar Respuesta";
             });
         }
 
-        function resetApp() {
-            document.getElementById('result-container').classList.add('hidden');
-            document.getElementById('lesson-container').classList.remove('hidden');
-            document.getElementById('p-fill').style.width = '33%';
-            document.getElementById('submit-btn').disabled = true;
-            document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+        function resetQuiz() {
+            loadObjective(currentObjective);
+        }
+
+        function logout() {
+            location.reload();
         }
     </script>
 </body>
