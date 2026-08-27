@@ -7,6 +7,27 @@ let allQuestions = [];
 let sessionStartTime = null;
 let timerInterval = null;
 
+let studySeconds = parseInt(localStorage.getItem('mateuna_study_seconds')) || 0;
+let currentWeekKey = getWeekKey(new Date());
+
+// Verificar si cambió de semana para reiniciar el contador semanal si es necesario
+let savedWeek = localStorage.getItem('mateuna_week_key');
+if (savedWeek !== currentWeekKey) {
+    studySeconds = 0;
+    localStorage.setItem('mateuna_week_key', currentWeekKey);
+    localStorage.setItem('mateuna_study_seconds', 0);
+}
+
+// Reloj incrementador de tiempo de estudio (corre cada segundo)
+setInterval(() => {
+    // Solo cuenta si la pestaña está activa y el usuario ha iniciado sesión
+    if (!document.hidden && document.getElementById('app-container') && !document.getElementById('app-container').classList.contains('hidden')) {
+        studySeconds++;
+        localStorage.setItem('mateuna_study_seconds', studySeconds);
+        updateStudyTimerDisplay();
+    }
+}, 1000);
+
 const siteContent = {
     fundamentacion: {
         title: "Fundamentación del Curso",
@@ -316,4 +337,18 @@ async function loadStudentGrades(container) {
     const userEmail = document.getElementById('user-name').dataset.email || '';
     container.innerHTML = `<h2 class="text-xl font-bold text-blue-900 mb-4">Mis Notas y Progreso</h2><p class="text-slate-400 text-sm">Consultando tu historial de evaluaciones...</p>`;
     // Aquí puedes filtrar la pestaña "Progreso" de tu Google Sheet por el correo del alumno actual
+}
+
+</div>
+            <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100 text-center">
+                <span class="block text-2xl font-bold text-emerald-800">${successRate}%</span>
+                <span class="text-xs text-emerald-600 font-medium uppercase">% de Aciertos en Quizzes</span>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center">
+                <span class="block text-2xl font-bold text-slate-700">${totalAttempts}</span>
+                <span class="text-xs text-slate-500 font-medium uppercase">Quizzes Respondidos</span>
+            </div>
+        </div>
+        <p class="text-slate-500 text-sm">Estas métricas se almacenan localmente en tu navegador para ayudarte a cumplir con la recomendación de la UNA de dedicar al menos 3 horas diarias por objetivo.</p>
+    `;
 }
