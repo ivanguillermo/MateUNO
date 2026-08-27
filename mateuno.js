@@ -289,6 +289,8 @@ function showSection(sectionKey) {
         `;
     } else if (sectionKey === 'links') {
         loadSheetDataAsTable('Links', dynamicView, 'Links Importantes de la Universidad');
+    } else if (sectionKey === 'estadisticas') {
+        loadStatisticsView(dynamicView);
     } else if (sectionKey === 'contacto') {
         loadSheetDataAsTable('Contacto', dynamicView, 'Contacto con Profesores y Asesores');
     } else if (sectionKey === 'examenes') {
