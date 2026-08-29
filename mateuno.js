@@ -98,6 +98,10 @@ function decodeJwtResponse(token) {
 
 function handleCredentialResponse(response) {
     const responsePayload = decodeJwtResponse(response.credential);
+    currentUser = {
+        name: responsePayload.name,
+        email: responsePayload.email
+    };
     
    const userData = {
         name: responsePayload.name,
