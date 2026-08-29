@@ -98,10 +98,16 @@ function decodeJwtResponse(token) {
 
 function handleCredentialResponse(response) {
     const responsePayload = decodeJwtResponse(response.credential);
-    currentUser = {
+    
+   const userData = {
         name: responsePayload.name,
-        email: responsePayload.email
+        email: responsePayload.email,
+        picture: responsePayload.picture
     };
+    localStorage.setItem('mateuna_user', JSON.stringify(userData));
+
+    // Mostrar la interfaz de usuario autenticado
+    renderAppUI(userData);
 
     document.getElementById('login-prompt').classList.add('hidden');
     document.getElementById('auth-section').classList.add('hidden');
@@ -110,10 +116,10 @@ function handleCredentialResponse(response) {
     document.getElementById('app-container').classList.remove('hidden');
     
     // Iniciar cronómetro de sesión
-    startSessionTimer();
-    
+    startSessionTimer();    
     fetchQuestions();
 }
+
 
 function startSessionTimer() {
     sessionStartTime = Date.now();
@@ -354,4 +360,20 @@ async function loadStudentGrades(container, successRate = 0, totalAttempts = 0) 
         </div>
         <p class="text-slate-500 text-sm">Estas métricas se almacenan localmente en tu navegador para ayudarte a cumplir con la recomendación de la UNA de dedicar al menos 3 horas diarias por objetivo.</p>
     `;
+}
+window.addEventListener('DOMContentLoaded', () => {
+    const savedUser = localStorage.getItem('mateuna_user');
+    
+    if (savedUser) {
+        const userData = JSON.parse(savedUser);
+        // Ocultar el botón de login y mostrar el panel del estudiante directamente
+        renderAppUI(userData);
+    } else {
+        // Mostrar el botón de Google si no hay sesión guardada
+        initializeGoogleButton();
+    }
+});
+function logoutUser() {
+    localStorage.removeItem('mateuna_user');
+    location.reload(); // Recarga la página y vuelve al estado de login
 }
