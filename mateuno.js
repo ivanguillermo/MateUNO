@@ -335,18 +335,19 @@ function showSection(sectionKey) {
 }
 
 // Función para cargar las notas y el progreso del alumno logueado
-async function loadStudentGrades(container) {
-    const userEmail = document.getElementById('user-name').dataset.email || '';
-    container.innerHTML = `<h2 class="text-xl font-bold text-blue-900 mb-4">Mis Notas y Progreso</h2><p class="text-slate-400 text-sm">Consultando tu historial de evaluaciones...</p>`;
-    // Aquí puedes filtrar la pestaña "Progreso" de tu Google Sheet por el correo del alumno actual
-}
-
-</div>
-            <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100 text-center">
+// Función para cargar las notas y el progreso del alumno logueado
+async function loadStudentGrades(container, successRate = 0, totalAttempts = 0) {
+    const userEmail = document.getElementById('user-name')?.dataset.email || '';
+    
+    container.innerHTML = `
+        <h2 class="text-xl font-bold text-blue-900 mb-4">Mis Notas y Progreso</h2>
+        <p class="text-slate-400 text-sm mb-4">Estudiante: ${userEmail}</p>
+        <div>
+            <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100 text-center mb-3">
                 <span class="block text-2xl font-bold text-emerald-800">${successRate}%</span>
                 <span class="text-xs text-emerald-600 font-medium uppercase">% de Aciertos en Quizzes</span>
             </div>
-            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center">
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center mb-4">
                 <span class="block text-2xl font-bold text-slate-700">${totalAttempts}</span>
                 <span class="text-xs text-slate-500 font-medium uppercase">Quizzes Respondidos</span>
             </div>
