@@ -381,3 +381,14 @@ function logoutUser() {
     localStorage.removeItem('mateuna_user');
     location.reload(); // Recarga la página y vuelve al estado de login
 }
+function initializeGoogleButton() {
+    google.accounts.id.initialize({
+        client_id: "TU_CLIENT_ID_DE_GOOGLE.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+    });
+
+    google.accounts.id.renderButton(
+        document.getElementById("buttonDiv"),
+        { theme: "outline", size: "large", text: "signin_with" }  // Personalización del botón
+    );
+}
