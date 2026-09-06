@@ -19,12 +19,11 @@ if (savedWeek !== currentWeekKey) {
 }
 
 // Reloj incrementador de tiempo de estudio (corre cada segundo)
+
 setInterval(() => {
-    // Solo cuenta si la pestaña está activa y el usuario ha iniciado sesión
-    if (!document.hidden && document.getElementById('app-container') && !document.getElementById('app-container').classList.contains('hidden')) {
-        studySeconds++;
-        localStorage.setItem('mateuna_study_seconds', studySeconds);
-        updateStudyTimerDisplay();
+    studySeconds++;
+    if (typeof updateStudyTimerDisplay === 'function') {
+        updateStudyTimerDisplay(studySeconds);
     }
 }, 1000);
 
@@ -155,6 +154,19 @@ function startSessionTimer() {
     }, 1000);
 }
 
+// Agrega o verifica que exista la función updateStudyTimerDisplay
+function updateStudyTimerDisplay(seconds) {
+    const timerElement = document.querySelector('.bg-slate-100 .text-xs') || document.getElementById('study-timer');
+    if (!timerElement) return;
+    
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+    
+    timerElement.innerText = `${formattedMinutes}:${formattedSeconds}`;
+}
+
 function populateObjectiveButtons() {
     const objectives = [...new Set(allQuestions.map(q => String(q.Objetivo || '').replace(',', '.').trim()))]
                         .filter(o => o.length > 0)
@@ -212,55 +224,71 @@ function switchObjective(objNum) {
 }
 
 function loadQuestionsForCurrentObjective() {
+    // Normaliza el objetivo actual removiendo espacios y pasando comas a puntos
+    const currentObjNormalized = String(currentObjective).replace(',', '.').trim();
+
     const filtered = allQuestions.filter(q => {
-        const objStr = String(q.Objetivo || '').replace(',', '.').trim();
-        return objStr === String(currentObjective).trim();
+        // Lee la propiedad 'Objetivo' (o 'objective' por si acaso)
+        const rawObj = q.Objetivo !== undefined ? q.Objetivo : q.objective;
+        if (rawObj === undefined || rawObj === null) return false;
+        
+        const objStr = String(rawObj).replace(',', '.').trim();
+        return objStr === currentObjNormalized;
     });
 
-    document.getElementById('obj-title').innerText = `Objetivo ${currentObjective}`;
+    document.getElementById('obj-title').innerText = `OBJETIVO ${currentObjective}`;
     
     const container = document.getElementById('options-container');
-    container.innerHTML = "";
-    document.getElementById('result-container').classList.add('hidden');
+    if (container) container.innerHTML = "";
+    
+    const resultContainer = document.getElementById('result-container');
+    if (resultContainer) resultContainer.classList.add('hidden');
+
+    const questionTextEl = document.getElementById('question-text');
 
     if (filtered.length === 0) {
-        document.getElementById('question-text').innerText = "No hay preguntas cargadas para este objetivo.";
-        document.getElementById('submit-btn').style.display = 'none';
+        questionTextEl.innerText = "No hay preguntas cargadas para este objetivo en la hoja de cálculo.";
+        const submitBtn = document.getElementById('submit-btn');
+        if (submitBtn) submitBtn.style.display = 'none';
         return;
     }
 
-    document.getElementById('submit-btn').style.display = 'block';
-
+    // Selecciona una pregunta al azar entre las filtradas
     const qData = filtered[Math.floor(Math.random() * filtered.length)];
-    document.getElementById('question-text').innerText = qData.Pregunta;
+    questionTextEl.innerText = qData.Pregunta || qData.question;
 
-    // Extraer opciones (La primera del Sheet siempre es la correcta)
+    const submitBtn = document.getElementById('submit-btn');
+    if (submitBtn) submitBtn.style.display = 'block';
+
+    // Renderizar opciones...
     let optionsArray = [
-        { text: qData.Opcion1_Correcta, correct: true },
-        { text: qData.Opcion2_Incorrecta1, correct: false },
-        { text: qData.Opcion3_Incorrecta2, correct: false }
+        { text: qData.Opcion1_Correcta || qData.correct, correct: true },
+        { text: qData.Opcion2_Incorrecta1 || qData.incorrect1, correct: false },
+        { text: qData.Opcion3_Incorrecta2 || qData.incorrect2, correct: false }
     ].filter(opt => opt.text !== undefined && opt.text !== "");
 
-    // Algoritmo Fisher-Yates para mezclar respuestas al azar
+    // Mezclar opciones (Fisher-Yates)
     for (let i = optionsArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [optionsArray[i], optionsArray[j]] = [optionsArray[j], optionsArray[i]];
     }
 
-    optionsArray.forEach((opt) => {
-        const btn = document.createElement('button');
-        btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 hover:border-blue-500 transition option-btn";
-        btn.innerText = opt.text;
-        btn.onclick = () => selectOption(btn, opt.correct);
-        container.appendChild(btn);
-    });
+    if (container) {
+        optionsArray.forEach((opt) => {
+            const btn = document.createElement('button');
+            btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 hover:border-blue-500 transition option-btn my-2";
+            btn.innerText = opt.text;
+            btn.onclick = () => selectOption(btn, opt.correct);
+            container.appendChild(btn);
+        });
+    }
 
     selectedAnswerCorrect = null;
-    const submitBtn = document.getElementById('submit-btn');
-    submitBtn.disabled = true;
-    submitBtn.className = "w-full bg-slate-300 text-white font-medium py-3 rounded-xl transition cursor-not-allowed";
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.className = "w-full bg-slate-300 text-white font-medium py-3 rounded-xl transition cursor-not-allowed mt-4";
+    }
 }
-
 function submitQuiz() {
     if (selectedAnswerCorrect === null) return;
 
