@@ -290,14 +290,18 @@ function showSection(sectionKey) {
     const quizView = document.getElementById('view-quiz');
     const dynamicView = document.getElementById('view-dynamic');
     
-    // Resetear clases activas del menú
+    // Ocultar menú en móvil tras seleccionar una opción
+    if (window.innerWidth < 768) {
+        document.getElementById('sidebar-menu')?.classList.add('hidden');
+    }
+
     document.querySelectorAll('aside button').forEach(btn => {
         btn.classList.remove('bg-blue-50', 'text-blue-900');
         btn.classList.add('text-slate-600', 'hover:bg-slate-50');
     });
     
     const activeBtn = document.getElementById(`nav-${sectionKey}`);
-    if(activeBtn) {
+    if (activeBtn) {
         activeBtn.classList.remove('text-slate-600', 'hover:bg-slate-50');
         activeBtn.classList.add('bg-blue-50', 'text-blue-900');
     }
@@ -311,7 +315,7 @@ function showSection(sectionKey) {
     quizView.classList.add('hidden');
     dynamicView.classList.remove('hidden');
 
-    // Renderizar secciones estáticas o dinámicas de Google Sheets
+    // Mapeo completo de todas las secciones
     if (siteContent[sectionKey]) {
         dynamicView.innerHTML = `
             <h2 class="text-xl font-bold text-blue-900 mb-4">${siteContent[sectionKey].title}</h2>
@@ -320,11 +324,15 @@ function showSection(sectionKey) {
     } else if (sectionKey === 'links') {
         loadSheetDataAsTable('Links', dynamicView, 'Links Importantes de la Universidad');
     } else if (sectionKey === 'estadisticas') {
-        loadStatisticsView(dynamicView);
+        loadStudentGrades(dynamicView);
     } else if (sectionKey === 'contacto') {
         loadSheetDataAsTable('Contacto', dynamicView, 'Contacto con Profesores y Asesores');
     } else if (sectionKey === 'examenes') {
         loadSheetDataAsTable('Examenes', dynamicView, 'Fechas de Exámenes y Calendario Oficial');
+    } else if (sectionKey === 'clases') {
+        loadSheetDataAsTable('Clases', dynamicView, 'Fechas y Horarios de Clases');
+    } else if (sectionKey === 'viejos') {
+        loadSheetDataAsTable('Viejos', dynamicView, 'Archivo de Exámenes Anteriores');
     } else if (sectionKey === 'notas') {
         loadStudentGrades(dynamicView);
     }
