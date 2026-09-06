@@ -1,4 +1,4 @@
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbydZ8qCZI_2oiBU1cyWAPpMoOTUzW4yQm3qkCFicYa-wWXhC90F-_C_esuhusVczlaG/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw7-YyOKPtnEpcKynE2L1aiQUPSZUTMltZl2CrqBIZQH_VuxL32NYpkwNmPEHeMyzMk/exec";
 let currentUser = null;
 let selectedAnswerCorrect = null;
 let currentObjective = "1.1";
@@ -155,16 +155,42 @@ function startSessionTimer() {
     }, 1000);
 }
 
+function populateObjectiveButtons() {
+    const objectives = [...new Set(allQuestions.map(q => String(q.Objetivo || '').replace(',', '.').trim()))]
+                        .filter(o => o.length > 0)
+                        .sort();
+
+    const selectorContainer = document.querySelector('#view-quiz .flex.gap-2');
+    if (!selectorContainer || objectives.length === 0) return;
+
+    selectorContainer.innerHTML = '';
+    objectives.forEach(obj => {
+        const btn = document.createElement('button');
+        btn.id = `btn-obj-${obj}`;
+        btn.innerText = `Obj. ${obj}`;
+        btn.className = (obj === currentObjective) 
+            ? "px-4 py-2 bg-blue-900 text-white rounded-xl font-medium text-sm transition"
+            : "px-4 py-2 bg-slate-100 text-slate-700 rounded-xl font-medium text-sm transition";
+        btn.onclick = () => switchObjective(obj);
+        selectorContainer.appendChild(btn);
+    });
+
+    if (!objectives.includes(currentObjective) && objectives.length > 0) {
+        currentObjective = objectives[0];
+    }
+}
+
 function fetchQuestions() {
     document.getElementById('question-text').innerText = "Cargando preguntas desde la nube...";
-    fetch(WEB_APP_URL)
+    fetch(`${WEB_APP_URL}?sheet=Preguntas`)
         .then(res => res.json())
         .then(data => {
             if(Array.isArray(data)) {
                 allQuestions = data;
+                populateObjectiveButtons();
                 loadQuestionsForCurrentObjective();
             } else {
-                document.getElementById('question-text').innerText = "Error al cargar las preguntas. Verifica la pestaña 'Preguntas'.";
+                document.getElementById('question-text').innerText = "Error en la estructura de datos.";
             }
         })
         .catch(err => {
@@ -175,19 +201,22 @@ function fetchQuestions() {
 
 function switchObjective(objNum) {
     currentObjective = objNum;
-    ["1.1", "1.2", "1.3"].forEach(id => {
-        const btn = document.getElementById(`btn-obj-${id}`);
-        if(id === objNum) {
-            btn.className = "px-4 py-2 bg-blue-900 text-white rounded-lg font-medium text-sm transition";
+    document.querySelectorAll('[id^="btn-obj-"]').forEach(btn => {
+        if(btn.id === `btn-obj-${objNum}`) {
+            btn.className = "px-4 py-2 bg-blue-900 text-white rounded-xl font-medium text-sm transition";
         } else {
-            btn.className = "px-4 py-2 bg-slate-200 text-slate-700 rounded-lg font-medium text-sm transition";
+            btn.className = "px-4 py-2 bg-slate-100 text-slate-700 rounded-xl font-medium text-sm transition";
         }
     });
     loadQuestionsForCurrentObjective();
 }
 
 function loadQuestionsForCurrentObjective() {
-    const filtered = allQuestions.filter(q => String(q.objective).trim() === String(currentObjective).trim());
+    const filtered = allQuestions.filter(q => {
+        const objStr = String(q.Objetivo || '').replace(',', '.').trim();
+        return objStr === String(currentObjective).trim();
+    });
+
     document.getElementById('obj-title').innerText = `Objetivo ${currentObjective}`;
     
     const container = document.getElementById('options-container');
@@ -195,7 +224,7 @@ function loadQuestionsForCurrentObjective() {
     document.getElementById('result-container').classList.add('hidden');
 
     if (filtered.length === 0) {
-        document.getElementById('question-text').innerText = "No hay preguntas cargadas para este objetivo en la hoja de cálculo.";
+        document.getElementById('question-text').innerText = "No hay preguntas cargadas para este objetivo.";
         document.getElementById('submit-btn').style.display = 'none';
         return;
     }
@@ -203,15 +232,16 @@ function loadQuestionsForCurrentObjective() {
     document.getElementById('submit-btn').style.display = 'block';
 
     const qData = filtered[Math.floor(Math.random() * filtered.length)];
-    document.getElementById('question-text').innerText = qData.question;
+    document.getElementById('question-text').innerText = qData.Pregunta;
 
+    // Extraer opciones (La primera del Sheet siempre es la correcta)
     let optionsArray = [
-        { text: qData.correct, correct: true },
-        { text: qData.incorrect1, correct: false },
-        { text: qData.incorrect2, correct: false }
-    ];
+        { text: qData.Opcion1_Correcta, correct: true },
+        { text: qData.Opcion2_Incorrecta1, correct: false },
+        { text: qData.Opcion3_Incorrecta2, correct: false }
+    ].filter(opt => opt.text !== undefined && opt.text !== "");
 
-    // Mezcla aleatoria de opciones
+    // Algoritmo Fisher-Yates para mezclar respuestas al azar
     for (let i = optionsArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [optionsArray[i], optionsArray[j]] = [optionsArray[j], optionsArray[i]];
@@ -231,34 +261,14 @@ function loadQuestionsForCurrentObjective() {
     submitBtn.className = "w-full bg-slate-300 text-white font-medium py-3 rounded-xl transition cursor-not-allowed";
 }
 
-function selectOption(button, isCorrect) {
-    document.querySelectorAll('.option-btn').forEach(btn => {
-        btn.classList.remove('border-blue-500', 'bg-blue-50', 'font-medium');
-    });
-    button.classList.add('border-blue-500', 'bg-blue-50', 'font-medium');
-    selectedAnswerCorrect = isCorrect;
-
-    const submitBtn = document.getElementById('submit-btn');
-    submitBtn.disabled = false;
-    submitBtn.className = "w-full bg-blue-900 hover:bg-blue-800 text-white font-medium py-3 rounded-xl transition shadow-sm cursor-pointer";
-}
-
 function submitQuiz() {
-    const score = selectedAnswerCorrect ? 100 : 50;
-    const status = selectedAnswerCorrect ? "Aprobado" : "En proceso";
-    
-    const elapsedSeconds = Math.floor((Date.now() - sessionStartTime) / 1000);
-    const minutes = Math.floor(elapsedSeconds / 60);
-    const seconds = elapsedSeconds % 60;
-    const timeSpentFormatted = `${minutes} min ${seconds} seg`;
+    if (selectedAnswerCorrect === null) return;
 
     const payload = {
         email: currentUser.email,
         name: currentUser.name,
-        unit: `Unidad I - Objetivo ${currentObjective}`,
-        score: score,
-        status: status,
-        timeSpent: timeSpentFormatted
+        objective: currentObjective,
+        isCorrect: selectedAnswerCorrect
     };
 
     const btn = document.getElementById('submit-btn');
@@ -267,13 +277,23 @@ function submitQuiz() {
 
     fetch(WEB_APP_URL, {
         method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "text/plain" }, // text/plain evita bloqueos CORS preflight en Apps Script
         body: JSON.stringify(payload)
-    }).then(() => {
+    })
+    .then(res => res.json())
+    .then(resData => {
         document.getElementById('result-container').classList.remove('hidden');
         btn.innerText = "Enviar Respuesta";
-    }).catch(err => {
+
+        // Actualizar estadísticas en pantalla con los datos retornados por Google Apps Script
+        if (resData.status === "success") {
+            const dynamicView = document.getElementById('view-dynamic');
+            if (dynamicView) {
+                loadStudentGrades(dynamicView, resData.successRate, resData.totalAttempts);
+            }
+        }
+    })
+    .catch(err => {
         console.error(err);
         document.getElementById('result-container').classList.remove('hidden');
         btn.innerText = "Enviar Respuesta";
