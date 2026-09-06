@@ -86,6 +86,13 @@ const siteContent = {
         `
     }
 };
+function getWeekKey(d) {
+    const date = new Date(d.getTime());
+    date.setHours(0, 0, 0, 0);
+    date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+    const week1 = new Date(date.getFullYear(), 0, 4);
+    return date.getFullYear() + '-W' + Math.ceil((((date - week1) / 86400000) + 1) / 7);
+}
 
 function decodeJwtResponse(token) {
     let base64Url = token.split('.')[1];
@@ -94,6 +101,19 @@ function decodeJwtResponse(token) {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
     return JSON.parse(jsonPayload);
+}
+
+function renderAppUI(userData) {
+    document.getElementById('login-prompt')?.classList.add('hidden');
+    document.getElementById('auth-section')?.classList.add('hidden');
+    document.getElementById('user-info')?.classList.remove('hidden');
+    document.getElementById('app-container')?.classList.remove('hidden');
+    
+    const userNameElem = document.getElementById('user-name');
+    if (userNameElem) {
+        userNameElem.innerText = `Hola, ${userData.name}`;
+        userNameElem.dataset.email = userData.email;
+    }
 }
 
 function handleCredentialResponse(response) {
@@ -381,14 +401,15 @@ function logoutUser() {
     localStorage.removeItem('mateuna_user');
     location.reload(); // Recarga la página y vuelve al estado de login
 }
+
 function initializeGoogleButton() {
     google.accounts.id.initialize({
-        client_id: "TU_CLIENT_ID_DE_GOOGLE.apps.googleusercontent.com",
+        client_id: "205229444634-85v2gua4tv360jnn02bj5d68uhrb2e85.apps.googleusercontent.com",
         callback: handleCredentialResponse
     });
 
     google.accounts.id.renderButton(
-        document.getElementById("buttonDiv"),
-        { theme: "outline", size: "large", text: "signin_with" }  // Personalización del botón
+        document.getElementById("auth-section"),
+        { theme: "outline", size: "large", text: "signin_with" }
     );
 }
