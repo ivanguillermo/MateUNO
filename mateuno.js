@@ -413,3 +413,18 @@ function initializeGoogleButton() {
         { theme: "outline", size: "large", text: "signin_with" }
     );
 }
+
+function toggleMobileMenu() {
+    const sidebar = document.getElementById('sidebar-menu');
+    if (sidebar) {
+        sidebar.classList.toggle('hidden');
+    }
+}
+
+// Asegurar que el botón de hamburguesa se muestre al iniciar sesión
+const originalRenderAppUI = typeof renderAppUI === 'function' ? renderAppUI : null;
+renderAppUI = function(userData) {
+    if (originalRenderAppUI) originalRenderAppUI(userData);
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    if (menuBtn) menuBtn.classList.remove('hidden');
+};
