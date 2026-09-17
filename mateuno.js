@@ -36,9 +36,15 @@ const siteContent = {
             <h3 class="font-bold text-blue-900 mt-4 mb-2">Material Instruccional Obligatorio</h3>
             <p class="text-slate-600">Texto UNA: Escobar B., Lameda A., Orellana C., (2000 / 2017) "Matemática I", el cual consta de tres Títulos de Instrucción:
                 <ol>
-                    <li><a href="https://drive.google.com/file/d/1s8ZV983yeUz-hzJSosve1bFx878NtoXe/view?usp=sharing" target="_blank">Conjuntos Numéricos, </a></li>
-                    <li><a href="https://drive.google.com/file/d/1o7rBbGf7SMUv-MMpf0dPyNyX4h3tZEn4/view?usp=sharing" target="_blank">Funciones y Representaciones Gráficas, y </a></li>
-                    <li><a href="https://drive.google.com/file/d/1Ic_hcviAfr7G2eEhrLNf4FT5rnevGAhs/view?usp=sharing" target="_blank">Sucesiones, Nociones Elementales de Límite y Continuidad.</a></li>
+                    <li class="font-bold text-blue-900">
+                        <a href="https://drive.google.com/file/d/1s8ZV983yeUz-hzJSosve1bFx878NtoXe/view?usp=sharing" target="_blank"> ➡️ Conjuntos Numéricos, </a>
+                    </li>
+                    <li class="font-bold text-blue-900">
+                        <a href="https://drive.google.com/file/d/1o7rBbGf7SMUv-MMpf0dPyNyX4h3tZEn4/view?usp=sharing" target="_blank"> ➡️ Funciones y Representaciones Gráficas, y </a>
+                    </li>
+                    <li class="font-bold text-blue-900">
+                        <a href="https://drive.google.com/file/d/1Ic_hcviAfr7G2eEhrLNf4FT5rnevGAhs/view?usp=sharing" target="_blank"> ➡️ Sucesiones, Nociones Elementales de Límite y Continuidad.</a>
+                    </li>
                 </ol>
             </p>
         `
