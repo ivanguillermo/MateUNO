@@ -10,7 +10,7 @@ let timerInterval = null;
 let studySeconds = parseInt(localStorage.getItem('mateuna_study_seconds')) || 0;
 let currentWeekKey = getWeekKey(new Date());
 
-// Verificar si cambió de semana para reiniciar el contador semanal
+// Reiniciar contador semanal si cambió de semana
 let savedWeek = localStorage.getItem('mateuna_week_key');
 if (savedWeek !== currentWeekKey) {
     studySeconds = 0;
@@ -18,12 +18,11 @@ if (savedWeek !== currentWeekKey) {
     localStorage.setItem('mateuna_study_seconds', 0);
 }
 
-// Reloj incrementador de tiempo de estudio
+// Contador continuo de tiempo de estudio
 setInterval(() => {
     studySeconds++;
-    if (typeof updateStudyTimerDisplay === 'function') {
-        updateStudyTimerDisplay(studySeconds);
-    }
+    localStorage.setItem('mateuna_study_seconds', studySeconds);
+    updateStudyTimerDisplay(studySeconds);
 }, 1000);
 
 const siteContent = {
@@ -35,15 +34,15 @@ const siteContent = {
             <p class="text-slate-600 bg-blue-50 p-4 rounded-xl border border-blue-100">Aplicar de manera coherente y sistemática los conceptos y técnicas relacionados con conjuntos numéricos, funciones, límites y la continuidad de funciones para la resolución de problemas tanto en ramas de la matemática como en otras disciplinas.</p>
             <h3 class="font-bold text-blue-900 mt-4 mb-2">Material Instruccional Obligatorio</h3>
             <p class="text-slate-600">Texto UNA: Escobar B., Lameda A., Orellana C., (2000 / 2017) "Matemática I", el cual consta de tres Títulos de Instrucción:
-                <ol>
+                <ol class="list-decimal list-inside mt-2 space-y-1">
                     <li class="font-bold text-blue-900">
-                        <a href="https://drive.google.com/file/d/1s8ZV983yeUz-hzJSosve1bFx878NtoXe/view?usp=sharing" target="_blank"> ➡️ Conjuntos Numéricos, </a>
+                        <a href="https://drive.google.com/file/d/1s8ZV983yeUz-hzJSosve1bFx878NtoXe/view?usp=sharing" target="_blank" class="underline"> Conjuntos Numéricos </a>
                     </li>
                     <li class="font-bold text-blue-900">
-                        <a href="https://drive.google.com/file/d/1o7rBbGf7SMUv-MMpf0dPyNyX4h3tZEn4/view?usp=sharing" target="_blank"> ➡️ Funciones y Representaciones Gráficas, y </a>
+                        <a href="https://drive.google.com/file/d/1o7rBbGf7SMUv-MMpf0dPyNyX4h3tZEn4/view?usp=sharing" target="_blank" class="underline"> Funciones y Representaciones Gráficas </a>
                     </li>
                     <li class="font-bold text-blue-900">
-                        <a href="https://drive.google.com/file/d/1Ic_hcviAfr7G2eEhrLNf4FT5rnevGAhs/view?usp=sharing" target="_blank"> ➡️ Sucesiones, Nociones Elementales de Límite y Continuidad.</a>
+                        <a href="https://drive.google.com/file/d/1Ic_hcviAfr7G2eEhrLNf4FT5rnevGAhs/view?usp=sharing" target="_blank" class="underline"> Sucesiones, Nociones Elementales de Límite y Continuidad </a>
                     </li>
                 </ol>
             </p>
@@ -56,8 +55,8 @@ const siteContent = {
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900">Unidad I: Conjuntos Numéricos</h4>
                     <p class="text-xs text-slate-500 mb-2">Objetivo: Emplear de manera lógica los conceptos y técnicas de números naturales, enteros, racionales y reales.</p>
-                    <p class="font-bold text-blue-900">
-                        <a href="https://drive.google.com/file/d/1s8ZV983yeUz-hzJSosve1bFx878NtoXe/view?usp=sharing" target="_blank"> 📖 TEXTO: CONJUNTOS NUMERICOS </a>
+                    <p class="font-bold text-blue-900 mb-2">
+                        <a href="https://drive.google.com/file/d/1s8ZV983yeUz-hzJSosve1bFx878NtoXe/view?usp=sharing" target="_blank" class="underline"> 📖 TEXTO: CONJUNTOS NUMÉRICOS </a>
                     </p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
                         <li><strong>Obj. 1.1:</strong> Naturales, enteros, racionales y uso de calculadora.</li>
@@ -68,8 +67,8 @@ const siteContent = {
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900">Unidad II: Funciones y Representaciones Gráficas</h4>
                     <p class="text-xs text-slate-500 mb-2">Objetivo: Demostrar de manera analítica problemas aplicando relaciones, funciones y gráficas.</p>
-                    <p class="font-bold text-blue-900">
-                        <a href="https://drive.google.com/file/d/1o7rBbGf7SMUv-MMpf0dPyNyX4h3tZEn4/view?usp=sharing" target="_blank"> 📖 TEXTO: FUNCIONES </a>
+                    <p class="font-bold text-blue-900 mb-2">
+                        <a href="https://drive.google.com/file/d/1o7rBbGf7SMUv-MMpf0dPyNyX4h3tZEn4/view?usp=sharing" target="_blank" class="underline"> 📖 TEXTO: FUNCIONES </a>
                     </p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
                         <li><strong>Obj. 2.1:</strong> Sistemas de coordenadas y distancia entre puntos.</li>
@@ -80,8 +79,8 @@ const siteContent = {
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900">Unidad III: Sucesiones, Límite y Continuidad</h4>
                     <p class="text-xs text-slate-500 mb-2">Objetivo: Aplicar límites y continuidad a sucesiones y funciones.</p>
-                    <p class="font-bold text-blue-900">
-                        <a href="https://drive.google.com/file/d/1Ic_hcviAfr7G2eEhrLNf4FT5rnevGAhs/view?usp=sharing" target="_blank"> 📖 TEXTO: SUCESIONES, LIMITES y CONTINUIDAD</a>
+                    <p class="font-bold text-blue-900 mb-2">
+                        <a href="https://drive.google.com/file/d/1Ic_hcviAfr7G2eEhrLNf4FT5rnevGAhs/view?usp=sharing" target="_blank" class="underline"> 📖 TEXTO: SUCESIONES, LÍMITES Y CONTINUIDAD</a>
                     </p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
                         <li><strong>Obj. 3.1:</strong> Sucesiones y límites de sucesiones.</li>
@@ -105,6 +104,88 @@ const siteContent = {
         `
     }
 };
+
+// --- PARSER Y NORMALIZADOR DE DATOS ---
+
+function parseCSV(text) {
+    const lines = text.trim().split(/\r?\n/);
+    if (lines.length < 2) return [];
+    
+    const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+    
+    return lines.slice(1).map(line => {
+        const values = line.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || line.split(',');
+        const obj = {};
+        headers.forEach((header, index) => {
+            let val = values[index] ? values[index].trim().replace(/^"|"$/g, '') : '';
+            obj[header] = val;
+        });
+        return obj;
+    });
+}
+
+function normalizeQuestionsKeys(data) {
+    return data.map(q => ({
+        Objetivo: String(q.Objetivo || q.objetivo || '').trim(),
+        Pregunta: q.Pregunta || q.pregunta || q.question || '',
+        Opcion1_Correcta: q.Opcion1_Correcta || q.Opcionl_Correcta || q.correct || '',
+        Opcion2_Incorrecta1: q.Opcion2_Incorrecta1 || q.Opcion2_Incorrectal || q.incorrect1 || '',
+        Opcion3_Incorrecta2: q.Opcion3_Incorrecta2 || q.incorrect2 || ''
+    }));
+}
+
+// --- CARGA DE DATOS INSTANTÁNEA (CSV) + SINCRONIZACIÓN EN SEGUNDO PLANO (SHEETS) ---
+
+async function fetchQuestions() {
+    const questionTextEl = document.getElementById('question-text');
+    let loadedFromLocal = false;
+
+    // FASE 1: Precarga instantánea desde CSV Local
+    try {
+        const localResponse = await fetch('./preguntas.csv');
+        if (localResponse.ok) {
+            const csvText = await localResponse.text();
+            const localData = parseCSV(csvText);
+            
+            if (localData.length > 0) {
+                allQuestions = normalizeQuestionsKeys(localData);
+                populateObjectiveButtons();
+                loadQuestionsForCurrentObjective();
+                loadedFromLocal = true;
+            }
+        }
+    } catch (e) {
+        console.warn("No se encontró preguntas.csv local o falló su lectura. Esperando red...", e);
+    }
+
+    if (!loadedFromLocal && questionTextEl) {
+        questionTextEl.innerText = "Conectando con la base de datos remota...";
+    }
+
+    // FASE 2: Sincronización en segundo plano con Google Sheets
+    try {
+        const response = await fetch(`${WEB_APP_URL}?sheet=Preguntas`);
+        const remoteData = await response.json();
+        
+        if (Array.isArray(remoteData) && remoteData.length > 0) {
+            const normalizedRemote = normalizeQuestionsKeys(remoteData);
+            
+            // Actualizar si hay diferencias o si no se cargó el CSV
+            if (!loadedFromLocal || JSON.stringify(allQuestions) !== JSON.stringify(normalizedRemote)) {
+                allQuestions = normalizedRemote;
+                populateObjectiveButtons();
+                loadQuestionsForCurrentObjective();
+            }
+        }
+    } catch (err) {
+        console.error("Error al consultar Google Sheets en segundo plano:", err);
+        if (!loadedFromLocal && questionTextEl) {
+            questionTextEl.innerText = "Error de conexión al cargar las preguntas.";
+        }
+    }
+}
+
+// --- GESTIÓN DE INTERFAZ Y QUIZ ---
 
 function getWeekKey(d) {
     const date = new Date(d.getTime());
@@ -169,15 +250,12 @@ function startSessionTimer() {
 }
 
 function updateStudyTimerDisplay(seconds) {
-    const timerElement = document.querySelector('.bg-slate-100 .text-xs') || document.getElementById('study-timer');
+    const timerElement = document.getElementById('session-timer');
     if (!timerElement) return;
     
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    const formattedMinutes = String(minutes).padStart(2, '0');
-    const formattedSeconds = String(remainingSeconds).padStart(2, '0');
-    
-    timerElement.innerText = `${formattedMinutes}:${formattedSeconds}`;
+    const minutes = Math.floor(seconds / 60).toString().padStart(2, '0');
+    const remainingSeconds = (seconds % 60).toString().padStart(2, '0');
+    timerElement.innerText = `⏱️ ${minutes}:${remainingSeconds}`;
 }
 
 function populateObjectiveButtons() {
@@ -191,41 +269,20 @@ function populateObjectiveButtons() {
         btn.id = `btn-obj-${obj}`;
         btn.innerText = `Obj. ${obj}`;
         btn.className = (obj === currentObjective) 
-            ? "px-4 py-2 bg-blue-900 text-white rounded-xl font-medium text-sm transition"
-            : "px-4 py-2 bg-slate-100 text-slate-700 rounded-xl font-medium text-sm transition";
+            ? "px-4 py-2 bg-blue-900 text-white rounded-xl font-medium text-sm transition shrink-0"
+            : "px-4 py-2 bg-slate-100 text-slate-700 rounded-xl font-medium text-sm transition shrink-0";
         btn.onclick = () => switchObjective(obj);
         selectorContainer.appendChild(btn);
     });
-}
-
-function fetchQuestions() {
-    const questionTextEl = document.getElementById('question-text');
-    if (questionTextEl) questionTextEl.innerText = "Cargando preguntas desde la nube...";
-    
-    fetch(`${WEB_APP_URL}?sheet=Preguntas`)
-        .then(res => res.json())
-        .then(data => {
-            if(Array.isArray(data) && data.length > 0) {
-                allQuestions = data;
-                populateObjectiveButtons();
-                loadQuestionsForCurrentObjective();
-            } else {
-                if (questionTextEl) questionTextEl.innerText = "No se encontraron preguntas o la estructura de datos es incorrecta.";
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            if (questionTextEl) questionTextEl.innerText = "Error de conexión al cargar las preguntas.";
-        });
 }
 
 function switchObjective(objNum) {
     currentObjective = objNum;
     document.querySelectorAll('[id^="btn-obj-"]').forEach(btn => {
         if(btn.id === `btn-obj-${objNum}`) {
-            btn.className = "px-4 py-2 bg-blue-900 text-white rounded-xl font-medium text-sm transition";
+            btn.className = "px-4 py-2 bg-blue-900 text-white rounded-xl font-medium text-sm transition shrink-0";
         } else {
-            btn.className = "px-4 py-2 bg-slate-100 text-slate-700 rounded-xl font-medium text-sm transition";
+            btn.className = "px-4 py-2 bg-slate-100 text-slate-700 rounded-xl font-medium text-sm transition shrink-0";
         }
     });
     loadQuestionsForCurrentObjective();
@@ -235,10 +292,8 @@ function loadQuestionsForCurrentObjective() {
     const currentObjNormalized = String(currentObjective).replace(',', '.').trim();
 
     const filtered = allQuestions.filter(q => {
-        const rawObj = q.Objetivo !== undefined ? q.Objetivo : q.objective;
-        if (rawObj === undefined || rawObj === null) return false;
-        
-        const objStr = String(rawObj).replace(',', '.').trim().replace(/^obj\.?\s*/i, '');
+        if (!q.Objetivo) return false;
+        const objStr = String(q.Objetivo).replace(',', '.').trim().replace(/^obj\.?\s*/i, '');
         return objStr === currentObjNormalized;
     });
 
@@ -254,28 +309,29 @@ function loadQuestionsForCurrentObjective() {
     const questionTextEl = document.getElementById('question-text');
 
     if (filtered.length === 0) {
-        if (questionTextEl) questionTextEl.innerText = "No hay preguntas cargadas para este objetivo en la hoja de cálculo.";
+        if (questionTextEl) questionTextEl.innerText = "No hay preguntas disponibles para este objetivo actualmente.";
         const submitBtn = document.getElementById('submit-btn');
         if (submitBtn) submitBtn.style.display = 'none';
         return;
     }
 
     const qData = filtered[Math.floor(Math.random() * filtered.length)];
-    if (questionTextEl) questionTextEl.innerText = qData.Pregunta || qData.question;
+    if (questionTextEl) questionTextEl.innerText = qData.Pregunta;
 
     const submitBtn = document.getElementById('submit-btn');
     if (submitBtn) {
         submitBtn.style.display = 'block';
         submitBtn.disabled = true;
-        submitBtn.className = "w-full bg-slate-300 text-white font-medium py-3 rounded-xl transition cursor-not-allowed mt-4";
+        submitBtn.className = "w-full bg-slate-200 text-slate-400 font-medium py-3 rounded-xl transition cursor-not-allowed";
     }
 
     let optionsArray = [
-        { text: qData.Opcion1_Correcta || qData.correct, correct: true },
-        { text: qData.Opcion2_Incorrecta1 || qData.incorrect1, correct: false },
-        { text: qData.Opcion3_Incorrecta2 || qData.incorrect2, correct: false }
-    ].filter(opt => opt.text !== undefined && opt.text !== "");
+        { text: qData.Opcion1_Correcta, correct: true },
+        { text: qData.Opcion2_Incorrecta1, correct: false },
+        { text: qData.Opcion3_Incorrecta2, correct: false }
+    ].filter(opt => opt.text && String(opt.text).trim() !== "");
 
+    // Mezclar las opciones al azar
     for (let i = optionsArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [optionsArray[i], optionsArray[j]] = [optionsArray[j], optionsArray[i]];
@@ -308,7 +364,7 @@ function selectOption(selectedBtn, isCorrect) {
     const submitBtn = document.getElementById('submit-btn');
     if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.className = "w-full bg-blue-900 hover:bg-blue-800 text-white font-medium py-3 rounded-xl transition cursor-pointer mt-4";
+        submitBtn.className = "w-full bg-blue-900 hover:bg-blue-800 text-white font-medium py-3 rounded-xl transition cursor-pointer";
     }
 }
 
@@ -347,14 +403,14 @@ function submitQuiz() {
         }
     })
     .catch(err => {
-        console.error(err);
+        console.error("Error al registrar intento:", err);
         const resultContainer = document.getElementById('result-container');
         if (resultContainer) resultContainer.classList.remove('hidden');
         if (btn) btn.innerText = "Enviar Respuesta";
     });
 }
 
-function logout() {
+function logoutUser() {
     if(timerInterval) clearInterval(timerInterval);
     localStorage.removeItem('mateuna_user');
     location.reload();
@@ -452,17 +508,17 @@ async function loadStudentStats(container, successRate = 0, totalAttempts = 0) {
     container.innerHTML = `
         <h2 class="text-xl font-bold text-blue-900 mb-4">Estadísticas de Práctica</h2>
         <p class="text-slate-400 text-sm mb-4">Estudiante: ${userEmail || 'No autenticado'}</p>
-        <div>
-            <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100 text-center mb-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100 text-center">
                 <span class="block text-2xl font-bold text-emerald-800">${successRate}%</span>
                 <span class="text-xs text-emerald-600 font-medium uppercase">% de Aciertos en Quizzes</span>
             </div>
-            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center mb-4">
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center">
                 <span class="block text-2xl font-bold text-slate-700">${totalAttempts}</span>
                 <span class="text-xs text-slate-500 font-medium uppercase">Quizzes Respondidos</span>
             </div>
         </div>
-        <p class="text-slate-500 text-sm">Estas métricas reflejan la efectividad en tus cuestionarios de práctica para la asignatura.</p>
+        <p class="text-slate-500 text-sm mt-4">Estas métricas reflejan la efectividad en tus cuestionarios de práctica para la asignatura.</p>
     `;
 }
 
@@ -564,6 +620,8 @@ async function loadStudentGradesSheet(container) {
         `;
     }
 }
+
+// --- INICIALIZACIÓN DE LA APLICACIÓN ---
 
 window.addEventListener('DOMContentLoaded', () => {
     const savedUser = localStorage.getItem('mateuna_user');
