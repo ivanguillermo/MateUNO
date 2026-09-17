@@ -35,11 +35,11 @@ const siteContent = {
             <p class="text-slate-600 bg-blue-50 p-4 rounded-xl border border-blue-100">Aplicar de manera coherente y sistemática los conceptos y técnicas relacionados con conjuntos numéricos, funciones, límites y la continuidad de funciones para la resolución de problemas tanto en ramas de la matemática como en otras disciplinas.</p>
             <h3 class="font-bold text-blue-900 mt-4 mb-2">Material Instruccional Obligatorio</h3>
             <p class="text-slate-600">Texto UNA: Escobar B., Lameda A., Orellana C., (2000 / 2017) "Matemática I", el cual consta de tres Títulos de Instrucción:
-                <ul>
-                    <li>Conjuntos Numéricos, </li>
-                    <li>Funciones y Representaciones Gráficas, y </li>
-                    <li>Sucesiones, Nociones Elementales de Límite y Continuidad.</li>
-                </ul>
+                <ol>
+                    <li><a href="https://drive.google.com/file/d/1s8ZV983yeUz-hzJSosve1bFx878NtoXe/view?usp=sharing" target="_blank">Conjuntos Numéricos, </a></li>
+                    <li><a href="https://drive.google.com/file/d/1o7rBbGf7SMUv-MMpf0dPyNyX4h3tZEn4/view?usp=sharing" target="_blank">Funciones y Representaciones Gráficas, y </a></li>
+                    <li><a href="https://drive.google.com/file/d/1Ic_hcviAfr7G2eEhrLNf4FT5rnevGAhs/view?usp=sharing" target="_blank">Sucesiones, Nociones Elementales de Límite y Continuidad.</a></li>
+                </ol>
             </p>
         `
     },
