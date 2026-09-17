@@ -30,12 +30,17 @@ const siteContent = {
     fundamentacion: {
         title: "Fundamentación del Curso",
         html: `
-            <p class="mb-4 text-slate-600">El curso de <strong>Matemática I</strong> (Código: 175-176-177) forma parte del ciclo de Estudios Generales de la Universidad Nacional Abierta (UNA). Es un curso básico y obligatorio orientando sus estrategias hacia la resolución de ejercicios y problemas para promover la integración entre la teoría y la práctica[cite: 16].</p>
+            <p class="mb-4 text-slate-600">El curso de <strong>Matemática I</strong> (Código: 175-176-177) forma parte del ciclo de Estudios Generales de la Universidad Nacional Abierta (UNA). Es un curso básico y obligatorio orientando sus estrategias hacia la resolución de ejercicios y problemas para promover la integración entre la teoría y la práctica.</p>
             <h3 class="font-bold text-blue-900 mt-4 mb-2">Objetivo Global de la Asignatura</h3>
-            <p class="text-slate-600 bg-blue-50 p-4 rounded-xl border border-blue-100">Aplicar de manera coherente y sistemática los conceptos y técnicas relacionados con conjuntos numéricos, funciones, límites y la continuidad de funciones para la resolución de problemas tanto en ramas de la matemática como en otras disciplinas[cite: 16].</p>
+            <p class="text-slate-600 bg-blue-50 p-4 rounded-xl border border-blue-100">Aplicar de manera coherente y sistemática los conceptos y técnicas relacionados con conjuntos numéricos, funciones, límites y la continuidad de funciones para la resolución de problemas tanto en ramas de la matemática como en otras disciplinas.</p>
             <h3 class="font-bold text-blue-900 mt-4 mb-2">Material Instruccional Obligatorio</h3>
-            <p class="text-slate-600">Texto UNA: Escobar B., Lameda A., Orellana C., (2000 / 2017) "Matemática I", el cual consta de tres Títulos de Instrucción: Conjuntos Numéricos, Funciones y Representaciones Gráficas, y Sucesiones, Nociones Elementales de Límite y Continuidad[cite: 16].</p>
-        `
+            <p class="text-slate-600">Texto UNA: Escobar B., Lameda A., Orellana C., (2000 / 2017) "Matemática I", el cual consta de tres Títulos de Instrucción: 
+                <ul>
+                    <li><a href="https://drive.google.com/file/d/1s8ZV983yeUz-hzJSosve1bFx878NtoXe/view?usp=sharing">Conjuntos Numéricos,</a></li>
+                    <li><a href="https://drive.google.com/file/d/1o7rBbGf7SMUv-MMpf0dPyNyX4h3tZEn4/view?usp=sharing">Funciones y Representaciones Gráficas, y</a></li>
+                    <li><a href="https://drive.google.com/file/d/1Ic_hcviAfr7G2eEhrLNf4FT5rnevGAhs/view?usp=sharing">Sucesiones, Nociones Elementales de Límite y Continuidad,</a></li>                    
+                </ul>
+            </p>
     },
     plan: {
         title: "Plan de Curso y Ruta de Estudio",
@@ -43,29 +48,32 @@ const siteContent = {
             <div class="space-y-4">
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900">Unidad I: Conjuntos Numéricos</h4>
-                    <p class="text-xs text-slate-500 mb-2">Objetivo: Emplear de manera lógica los conceptos y técnicas de números naturales, enteros, racionales y reales[cite: 16].</p>
+                    <p class="text-xs text-slate-500 mb-2">Objetivo: Emplear de manera lógica los conceptos y técnicas de números naturales, enteros, racionales y reales.</p>
+                    <p class="text-xs text-slate-500 mb-2"><a href="https://drive.google.com/file/d/1s8ZV983yeUz-hzJSosve1bFx878NtoXe/view?usp=sharing">LIBRO TEXTO: CONJUNTOS.</a></p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
-                        <li><strong>Obj. 1.1:</strong> Naturales, enteros, racionales y uso de calculadora[cite: 16].</li>
-                        <li><strong>Obj. 1.2:</strong> Números reales y aproximaciones decimales[cite: 16].</li>
-                        <li><strong>Obj. 1.3:</strong> Relación de orden en R, desigualdades y valor absoluto[cite: 16].</li>
+                        <li><strong>Obj. 1.1:</strong> Naturales, enteros, racionales y uso de calculadora.</li>
+                        <li><strong>Obj. 1.2:</strong> Números reales y aproximaciones decimales.</li>
+                        <li><strong>Obj. 1.3:</strong> Relación de orden en R, desigualdades y valor absoluto.</li>
                     </ul>
                 </div>
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900">Unidad II: Funciones y Representaciones Gráficas</h4>
-                    <p class="text-xs text-slate-500 mb-2">Objetivo: Demostrar de manera analítica problemas aplicando relaciones, funciones y gráficas[cite: 16].</p>
+                    <p class="text-xs text-slate-500 mb-2">Objetivo: Demostrar de manera analítica problemas aplicando relaciones, funciones y gráficas.</p>
+                    <p class="text-xs text-slate-500 mb-2"><a href="https://drive.google.com/file/d/1s8ZV983yeUz-hzJSosve1bFx878NtoXe/view?usp=sharing">LIBRO TEXTO: FUNCIONES Y REPRESENTACIONES GRAFICAS.</a></p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
-                        <li><strong>Obj. 2.1:</strong> Sistemas de coordenadas y distancia entre puntos[cite: 16].</li>
-                        <li><strong>Obj. 2.2:</strong> Funciones elementales y composición de funciones[cite: 16].</li>
-                        <li><strong>Obj. 2.3:</strong> Representaciones gráficas y variables estadísticas[cite: 16].</li>
+                        <li><strong>Obj. 2.1:</strong> Sistemas de coordenadas y distancia entre puntos.</li>
+                        <li><strong>Obj. 2.2:</strong> Funciones elementales y composición de funciones.</li>
+                        <li><strong>Obj. 2.3:</strong> Representaciones gráficas y variables estadísticas.</li>
                     </ul>
                 </div>
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900">Unidad III: Sucesiones, Límite y Continuidad</h4>
-                    <p class="text-xs text-slate-500 mb-2">Objetivo: Aplicar límites y continuidad a sucesiones y funciones[cite: 16].</p>
+                    <p class="text-xs text-slate-500 mb-2">Objetivo: Aplicar límites y continuidad a sucesiones y funciones.</p>
+                    <p class="text-xs text-slate-500 mb-2"><a href="https://drive.google.com/file/d/1Ic_hcviAfr7G2eEhrLNf4FT5rnevGAhs/view?usp=sharing">LIBRO TEXTO: SUCESIONES, LIMITES y CONTINUIDAD.</a></p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
-                        <li><strong>Obj. 3.1:</strong> Sucesiones y límites de sucesiones[cite: 16].</li>
-                        <li><strong>Obj. 3.2:</strong> Límites de funciones y técnicas de cálculo[cite: 16].</li>
-                        <li><strong>Obj. 3.3:</strong> Funciones continuas, Teorema de Bolzano y Valor Intermedio[cite: 16].</li>
+                        <li><strong>Obj. 3.1:</strong> Sucesiones y límites de sucesiones.</li>
+                        <li><strong>Obj. 3.2:</strong> Límites de funciones y técnicas de cálculo.</li>
+                        <li><strong>Obj. 3.3:</strong> Funciones continuas, Teorema de Bolzano y Valor Intermedio.</li>
                     </ul>
                 </div>
             </div>
@@ -76,10 +84,10 @@ const siteContent = {
         html: `
             <p class="text-slate-600 mb-4">Para garantizar el éxito académico en la modalidad a distancia de la UNA, te recomendamos seguir esta rutina:</p>
             <ol class="list-decimal list-inside space-y-2 text-slate-600 text-sm">
-                <li><strong>Organiza tu tiempo:</strong> Emplea al menos 3 horas diarias, 5 días a la semana por cada objetivo (mínimo 26 horas de estudio por objetivo)[cite: 16].</li>
-                <li><strong>Lectura previa:</strong> Lee detalladamente la introducción y el cuadro resumen de repaso antes de abordar cada unidad[cite: 16].</li>
+                <li><strong>Organiza tu tiempo:</strong> Emplea al menos 3 horas diarias, 5 días a la semana por cada objetivo (mínimo 26 horas de estudio por objetivo).</li>
+                <li><strong>Lectura previa:</strong> Lee detalladamente la introducción y el cuadro resumen de repaso antes de abordar cada unidad.</li>
                 <li><strong>Práctica constante:</strong> Resuelve los ejercicios propuestos en el Módulo y apóyate en los quizzes interactivos de esta plataforma.</li>
-                <li><strong>Aprendizaje colaborativo:</strong> Organiza grupos de estudio de 3 o 4 personas para debatir dudas[cite: 16].</li>
+                <li><strong>Aprendizaje colaborativo:</strong> Organiza grupos de estudio de 3 o 4 personas para debatir dudas.</li>
             </ol>
         `
     }
@@ -441,7 +449,7 @@ async function loadStudentStats(container, successRate = 0, totalAttempts = 0) {
                 <span class="text-xs text-slate-500 font-medium uppercase">Quizzes Respondidos</span>
             </div>
         </div>
-        <p class="text-slate-500 text-sm">Estas métricas reflejan la efectividad en tus cuestionarios de práctica para la asignatura[cite: 16].</p>
+        <p class="text-slate-500 text-sm">Estas métricas reflejan la efectividad en tus cuestionarios de práctica para la asignatura.</p>
     `;
 }
 
