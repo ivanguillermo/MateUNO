@@ -19,7 +19,6 @@ if (savedWeek !== currentWeekKey) {
 }
 
 // Reloj incrementador de tiempo de estudio (corre cada segundo)
-
 setInterval(() => {
     studySeconds++;
     if (typeof updateStudyTimerDisplay === 'function') {
@@ -85,6 +84,7 @@ const siteContent = {
         `
     }
 };
+
 function getWeekKey(d) {
     const date = new Date(d.getTime());
     date.setHours(0, 0, 0, 0);
@@ -113,6 +113,8 @@ function renderAppUI(userData) {
         userNameElem.innerText = `Hola, ${userData.name}`;
         userNameElem.dataset.email = userData.email;
     }
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    if (menuBtn) menuBtn.classList.remove('hidden');
 }
 
 function handleCredentialResponse(response) {
@@ -122,27 +124,18 @@ function handleCredentialResponse(response) {
         email: responsePayload.email
     };
     
-   const userData = {
+    const userData = {
         name: responsePayload.name,
         email: responsePayload.email,
         picture: responsePayload.picture
     };
     localStorage.setItem('mateuna_user', JSON.stringify(userData));
 
-    // Mostrar la interfaz de usuario autenticado
     renderAppUI(userData);
-
-    document.getElementById('login-prompt').classList.add('hidden');
-    document.getElementById('auth-section').classList.add('hidden');
-    document.getElementById('user-info').classList.remove('hidden');
-    document.getElementById('user-name').innerText = `Hola, ${responsePayload.name}`;
-    document.getElementById('app-container').classList.remove('hidden');
     
-    // Iniciar cronómetro de sesión
     startSessionTimer();    
     fetchQuestions();
 }
-
 
 function startSessionTimer() {
     sessionStartTime = Date.now();
@@ -150,11 +143,11 @@ function startSessionTimer() {
         const elapsedSeconds = Math.floor((Date.now() - sessionStartTime) / 1000);
         const minutes = Math.floor(elapsedSeconds / 60).toString().padStart(2, '0');
         const seconds = (elapsedSeconds % 60).toString().padStart(2, '0');
-        document.getElementById('session-timer').innerText = `⏱️ ${minutes}:${seconds}`;
+        const timerElem = document.getElementById('session-timer');
+        if (timerElem) timerElem.innerText = `⏱️ ${minutes}:${seconds}`;
     }, 1000);
 }
 
-// Agrega o verifica que exista la función updateStudyTimerDisplay
 function updateStudyTimerDisplay(seconds) {
     const timerElement = document.querySelector('.bg-slate-100 .text-xs') || document.getElementById('study-timer');
     if (!timerElement) return;
@@ -168,7 +161,7 @@ function updateStudyTimerDisplay(seconds) {
 }
 
 function populateObjectiveButtons() {
-    const objectives = [...new Set(allQuestions.map(q => String(q.Objetivo || '').replace(',', '.').trim()))]
+    const objectives = [...new Set(allQuestions.map(q => String(q.Objetivo || q.objective || '').replace(',', '.').trim()))]
                         .filter(o => o.length > 0)
                         .sort();
 
@@ -193,21 +186,23 @@ function populateObjectiveButtons() {
 }
 
 function fetchQuestions() {
-    document.getElementById('question-text').innerText = "Cargando preguntas desde la nube...";
+    const questionTextEl = document.getElementById('question-text');
+    if (questionTextEl) questionTextEl.innerText = "Cargando preguntas desde la nube...";
+    
     fetch(`${WEB_APP_URL}?sheet=Preguntas`)
         .then(res => res.json())
         .then(data => {
-            if(Array.isArray(data)) {
+            if(Array.isArray(data) && data.length > 0) {
                 allQuestions = data;
                 populateObjectiveButtons();
                 loadQuestionsForCurrentObjective();
             } else {
-                document.getElementById('question-text').innerText = "Error en la estructura de datos.";
+                if (questionTextEl) questionTextEl.innerText = "No se encontraron preguntas o la estructura de datos es incorrecta.";
             }
         })
         .catch(err => {
             console.error(err);
-            document.getElementById('question-text').innerText = "Error de conexión con el servidor.";
+            if (questionTextEl) questionTextEl.innerText = "Error de conexión al cargar las preguntas.";
         });
 }
 
@@ -224,11 +219,9 @@ function switchObjective(objNum) {
 }
 
 function loadQuestionsForCurrentObjective() {
-    // Normaliza el objetivo actual removiendo espacios y pasando comas a puntos
     const currentObjNormalized = String(currentObjective).replace(',', '.').trim();
 
     const filtered = allQuestions.filter(q => {
-        // Lee la propiedad 'Objetivo' (o 'objective' por si acaso)
         const rawObj = q.Objetivo !== undefined ? q.Objetivo : q.objective;
         if (rawObj === undefined || rawObj === null) return false;
         
@@ -236,7 +229,8 @@ function loadQuestionsForCurrentObjective() {
         return objStr === currentObjNormalized;
     });
 
-    document.getElementById('obj-title').innerText = `OBJETIVO ${currentObjective}`;
+    const titleEl = document.getElementById('obj-title');
+    if (titleEl) titleEl.innerText = `OBJETIVO ${currentObjective}`;
     
     const container = document.getElementById('options-container');
     if (container) container.innerHTML = "";
@@ -247,27 +241,29 @@ function loadQuestionsForCurrentObjective() {
     const questionTextEl = document.getElementById('question-text');
 
     if (filtered.length === 0) {
-        questionTextEl.innerText = "No hay preguntas cargadas para este objetivo en la hoja de cálculo.";
+        if (questionTextEl) questionTextEl.innerText = "No hay preguntas disponibles para este objetivo.";
         const submitBtn = document.getElementById('submit-btn');
         if (submitBtn) submitBtn.style.display = 'none';
         return;
     }
 
-    // Selecciona una pregunta al azar entre las filtradas
     const qData = filtered[Math.floor(Math.random() * filtered.length)];
-    questionTextEl.innerText = qData.Pregunta || qData.question;
+    if (questionTextEl) questionTextEl.innerText = qData.Pregunta || qData.question;
 
     const submitBtn = document.getElementById('submit-btn');
-    if (submitBtn) submitBtn.style.display = 'block';
+    if (submitBtn) {
+        submitBtn.style.display = 'block';
+        submitBtn.disabled = true;
+        submitBtn.className = "w-full bg-slate-300 text-white font-medium py-3 rounded-xl transition cursor-not-allowed mt-4";
+    }
 
-    // Renderizar opciones...
     let optionsArray = [
         { text: qData.Opcion1_Correcta || qData.correct, correct: true },
         { text: qData.Opcion2_Incorrecta1 || qData.incorrect1, correct: false },
         { text: qData.Opcion3_Incorrecta2 || qData.incorrect2, correct: false }
     ].filter(opt => opt.text !== undefined && opt.text !== "");
 
-    // Mezclar opciones (Fisher-Yates)
+    // Mezclar opciones
     for (let i = optionsArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [optionsArray[i], optionsArray[j]] = [optionsArray[j], optionsArray[i]];
@@ -284,36 +280,55 @@ function loadQuestionsForCurrentObjective() {
     }
 
     selectedAnswerCorrect = null;
+}
+
+function selectOption(selectedBtn, isCorrect) {
+    selectedAnswerCorrect = isCorrect;
+
+    // Quitar estilos a los demás botones y resaltar el elegido
+    document.querySelectorAll('#options-container button').forEach(btn => {
+        btn.classList.remove('border-blue-900', 'bg-blue-50', 'ring-2', 'ring-blue-500');
+        btn.classList.add('border-slate-200');
+    });
+
+    selectedBtn.classList.remove('border-slate-200');
+    selectedBtn.classList.add('border-blue-900', 'bg-blue-50', 'ring-2', 'ring-blue-500');
+
+    // Habilitar botón de envío
+    const submitBtn = document.getElementById('submit-btn');
     if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.className = "w-full bg-slate-300 text-white font-medium py-3 rounded-xl transition cursor-not-allowed mt-4";
+        submitBtn.disabled = false;
+        submitBtn.className = "w-full bg-blue-900 hover:bg-blue-800 text-white font-medium py-3 rounded-xl transition cursor-pointer mt-4";
     }
 }
+
 function submitQuiz() {
     if (selectedAnswerCorrect === null) return;
 
     const payload = {
-        email: currentUser.email,
-        name: currentUser.name,
+        email: currentUser ? currentUser.email : "invitado@unasec.edu.ve",
+        name: currentUser ? currentUser.name : "Estudiante",
         objective: currentObjective,
         isCorrect: selectedAnswerCorrect
     };
 
     const btn = document.getElementById('submit-btn');
-    btn.innerText = "Enviando...";
-    btn.disabled = true;
+    if (btn) {
+        btn.innerText = "Enviando...";
+        btn.disabled = true;
+    }
 
     fetch(WEB_APP_URL, {
         method: "POST",
-        headers: { "Content-Type": "text/plain" }, // text/plain evita bloqueos CORS preflight en Apps Script
+        headers: { "Content-Type": "text/plain" },
         body: JSON.stringify(payload)
     })
     .then(res => res.json())
     .then(resData => {
-        document.getElementById('result-container').classList.remove('hidden');
-        btn.innerText = "Enviar Respuesta";
+        const resultContainer = document.getElementById('result-container');
+        if (resultContainer) resultContainer.classList.remove('hidden');
+        if (btn) btn.innerText = "Enviar Respuesta";
 
-        // Actualizar estadísticas en pantalla con los datos retornados por Google Apps Script
         if (resData.status === "success") {
             const dynamicView = document.getElementById('view-dynamic');
             if (dynamicView) {
@@ -323,22 +338,22 @@ function submitQuiz() {
     })
     .catch(err => {
         console.error(err);
-        document.getElementById('result-container').classList.remove('hidden');
-        btn.innerText = "Enviar Respuesta";
+        const resultContainer = document.getElementById('result-container');
+        if (resultContainer) resultContainer.classList.remove('hidden');
+        if (btn) btn.innerText = "Enviar Respuesta";
     });
 }
 
 function logout() {
     if(timerInterval) clearInterval(timerInterval);
+    localStorage.removeItem('mateuna_user');
     location.reload();
 }
-
 
 function showSection(sectionKey) {
     const quizView = document.getElementById('view-quiz');
     const dynamicView = document.getElementById('view-dynamic');
     
-    // Ocultar menú en móvil tras seleccionar una opción
     if (window.innerWidth < 768) {
         document.getElementById('sidebar-menu')?.classList.add('hidden');
     }
@@ -363,7 +378,6 @@ function showSection(sectionKey) {
     quizView.classList.add('hidden');
     dynamicView.classList.remove('hidden');
 
-    // Mapeo completo de todas las secciones
     if (siteContent[sectionKey]) {
         dynamicView.innerHTML = `
             <h2 class="text-xl font-bold text-blue-900 mb-4">${siteContent[sectionKey].title}</h2>
@@ -371,7 +385,7 @@ function showSection(sectionKey) {
         `;
     } else if (sectionKey === 'links') {
         loadSheetDataAsTable('Links', dynamicView, 'Links Importantes de la Universidad');
-    } else if (sectionKey === 'estadisticas') {
+    } else if (sectionKey === 'estadisticas' || sectionKey === 'notas') {
         loadStudentGrades(dynamicView);
     } else if (sectionKey === 'contacto') {
         loadSheetDataAsTable('Contacto', dynamicView, 'Contacto con Profesores y Asesores');
@@ -381,15 +395,12 @@ function showSection(sectionKey) {
         loadSheetDataAsTable('Clases', dynamicView, 'Fechas y Horarios de Clases');
     } else if (sectionKey === 'viejos') {
         loadSheetDataAsTable('Viejos', dynamicView, 'Archivo de Exámenes Anteriores');
-    } else if (sectionKey === 'notas') {
-        loadStudentGrades(dynamicView);
     }
 }
-    
- async function loadSheetDataAsTable(sheetName, container, title) {
+
+async function loadSheetDataAsTable(sheetName, container, title) {
     container.innerHTML = `<h2 class="text-xl font-bold text-blue-900 mb-4">${title}</h2><p class="text-slate-400 text-sm">Cargando datos desde Google Sheets...</p>`;
     try {
-        // ✅ Usa la variable global configurada correctamente al inicio
         const response = await fetch(`${WEB_APP_URL}?sheet=${sheetName}`);
         const data = await response.json();
         
@@ -408,7 +419,9 @@ function showSection(sectionKey) {
             html += `<tr class="border-b border-slate-100">`;
             headers.forEach(h => {
                 let val = row[h] || '';
-                if(val.startsWith('http')) val = `<a href="${val}" target="_blank" class="text-blue-600 underline">Ver Enlace / PDF</a>`;
+                if(typeof val === 'string' && val.startsWith('http')) {
+                    val = `<a href="${val}" target="_blank" class="text-blue-600 underline">Ver Enlace / PDF</a>`;
+                }
                 html += `<td class="p-3">${val}</td>`;
             });
             html += `</tr>`;
@@ -416,14 +429,13 @@ function showSection(sectionKey) {
         html += `</tbody></table></div>`;
         container.innerHTML = html;
     } catch (e) {
+        console.error(e);
         container.innerHTML = `<h2 class="text-xl font-bold text-blue-900 mb-4">${title}</h2><p class="text-red-500 text-sm">Error al conectar con la base de datos de Google Sheets.</p>`;
     }
 }
 
-// Función para cargar las notas y el progreso del alumno logueado
-// Función para cargar las notas y el progreso del alumno logueado
 async function loadStudentGrades(container, successRate = 0, totalAttempts = 0) {
-    const userEmail = document.getElementById('user-name')?.dataset.email || '';
+    const userEmail = document.getElementById('user-name')?.dataset.email || (currentUser ? currentUser.email : '');
     
     container.innerHTML = `
         <h2 class="text-xl font-bold text-blue-900 mb-4">Mis Notas y Progreso</h2>
@@ -438,36 +450,39 @@ async function loadStudentGrades(container, successRate = 0, totalAttempts = 0) 
                 <span class="text-xs text-slate-500 font-medium uppercase">Quizzes Respondidos</span>
             </div>
         </div>
-        <p class="text-slate-500 text-sm">Estas métricas se almacenan localmente en tu navegador para ayudarte a cumplir con la recomendación de la UNA de dedicar al menos 3 horas diarias por objetivo.</p>
+        <p class="text-slate-500 text-sm">Estas métricas se almacenan localmente en tu navegador para ayudarte a cumplir con la recomendación de la UNA de dedicar al menos 3 horas diarias por objetivo[cite: 1].</p>
     `;
 }
+
 window.addEventListener('DOMContentLoaded', () => {
     const savedUser = localStorage.getItem('mateuna_user');
     
     if (savedUser) {
         const userData = JSON.parse(savedUser);
-        // Ocultar el botón de login y mostrar el panel del estudiante directamente
+        currentUser = userData;
         renderAppUI(userData);
+        startSessionTimer();
+        fetchQuestions();
     } else {
-        // Mostrar el botón de Google si no hay sesión guardada
         initializeGoogleButton();
     }
 });
-function logoutUser() {
-    localStorage.removeItem('mateuna_user');
-    location.reload(); // Recarga la página y vuelve al estado de login
-}
 
 function initializeGoogleButton() {
-    google.accounts.id.initialize({
-        client_id: "205229444634-85v2gua4tv360jnn02bj5d68uhrb2e85.apps.googleusercontent.com",
-        callback: handleCredentialResponse
-    });
+    if (typeof google !== 'undefined' && google.accounts) {
+        google.accounts.id.initialize({
+            client_id: "205229444634-85v2gua4tv360jnn02bj5d68uhrb2e85.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
 
-    google.accounts.id.renderButton(
-        document.getElementById("auth-section"),
-        { theme: "outline", size: "large", text: "signin_with" }
-    );
+        const authSection = document.getElementById("auth-section");
+        if (authSection) {
+            google.accounts.id.renderButton(
+                authSection,
+                { theme: "outline", size: "large", text: "signin_with" }
+            );
+        }
+    }
 }
 
 function toggleMobileMenu() {
@@ -476,11 +491,3 @@ function toggleMobileMenu() {
         sidebar.classList.toggle('hidden');
     }
 }
-
-// Asegurar que el botón de hamburguesa se muestre al iniciar sesión
-const originalRenderAppUI = typeof renderAppUI === 'function' ? renderAppUI : null;
-renderAppUI = function(userData) {
-    if (originalRenderAppUI) originalRenderAppUI(userData);
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    if (menuBtn) menuBtn.classList.remove('hidden');
-};
