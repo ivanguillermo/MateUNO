@@ -46,6 +46,18 @@ const siteContent = {
                     </li>
                 </ol>
             </p>
+            <p> Dependiendo de la carrera deberas utuilizar alguno de estos textos</p>
+            <ol class="list-decimal list-inside mt-2 space-y-1">
+                <li class="font-bold text-blue-900">
+                     <a href="https://drive.google.com/file/d/1UNT-QvUN_jI0FY9-ib0v0D6R27DE3zVy/view?usp=sharing" target="_blank" class="underline"> 175 </a>
+                </li>
+                <li class="font-bold text-blue-900">
+                     <a href="https://drive.google.com/file/d/1pGpCIIBXOqGZ8Hk77NqBe-XZh7s0n3IX/view?usp=sharing" target="_blank" class="underline"> 176</a>
+                </li>
+                <li class="font-bold text-blue-900">
+                     <a href="https://drive.google.com/file/d/1OeT2wMbwokRvrSxqhqQR6hGUL_-F5g4b/view?usp=sharing" target="_blank" class="underline"> 177</a>
+                </li>
+            </ol>
         `
     },
     plan: {
