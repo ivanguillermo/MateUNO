@@ -10,7 +10,7 @@ let timerInterval = null;
 let studySeconds = parseInt(localStorage.getItem('mateuna_study_seconds')) || 0;
 let currentWeekKey = getWeekKey(new Date());
 
-// Verificar si cambió de semana para reiniciar el contador semanal si es necesario
+// Verificar si cambió de semana para reiniciar el contador semanal
 let savedWeek = localStorage.getItem('mateuna_week_key');
 if (savedWeek !== currentWeekKey) {
     studySeconds = 0;
@@ -18,7 +18,7 @@ if (savedWeek !== currentWeekKey) {
     localStorage.setItem('mateuna_study_seconds', 0);
 }
 
-// Reloj incrementador de tiempo de estudio (corre cada segundo)
+// Reloj incrementador de tiempo de estudio
 setInterval(() => {
     studySeconds++;
     if (typeof updateStudyTimerDisplay === 'function') {
@@ -30,11 +30,11 @@ const siteContent = {
     fundamentacion: {
         title: "Fundamentación del Curso",
         html: `
-            <p class="mb-4 text-slate-600">El curso de <strong>Matemática I</strong> (Código: 175-176-177) forma parte del ciclo de Estudios Generales de la Universidad Nacional Abierta (UNA). Es un curso básico y obligatorio orientando sus estrategias hacia la resolución de ejercicios y problemas para promover la integración entre la teoría y la práctica .</p>
+            <p class="mb-4 text-slate-600">El curso de <strong>Matemática I</strong> (Código: 175-176-177) forma parte del ciclo de Estudios Generales de la Universidad Nacional Abierta (UNA). Es un curso básico y obligatorio orientando sus estrategias hacia la resolución de ejercicios y problemas para promover la integración entre la teoría y la práctica[cite: 16].</p>
             <h3 class="font-bold text-blue-900 mt-4 mb-2">Objetivo Global de la Asignatura</h3>
-            <p class="text-slate-600 bg-blue-50 p-4 rounded-xl border border-blue-100">Aplicar de manera coherente y sistemática los conceptos y técnicas relacionados con conjuntos numéricos, funciones, límites y la continuidad de funciones para la resolución de problemas tanto en ramas de la matemática como en otras disciplinas .</p>
+            <p class="text-slate-600 bg-blue-50 p-4 rounded-xl border border-blue-100">Aplicar de manera coherente y sistemática los conceptos y técnicas relacionados con conjuntos numéricos, funciones, límites y la continuidad de funciones para la resolución de problemas tanto en ramas de la matemática como en otras disciplinas[cite: 16].</p>
             <h3 class="font-bold text-blue-900 mt-4 mb-2">Material Instruccional Obligatorio</h3>
-            <p class="text-slate-600">Texto UNA: Escobar B., Lameda A., Orellana C., (2000 / 2017) "Matemática I", el cual consta de tres Títulos de Instrucción: Conjuntos Numéricos, Funciones y Representaciones Gráficas, y Sucesiones, Nociones Elementales de Límite y Continuidad .</p>
+            <p class="text-slate-600">Texto UNA: Escobar B., Lameda A., Orellana C., (2000 / 2017) "Matemática I", el cual consta de tres Títulos de Instrucción: Conjuntos Numéricos, Funciones y Representaciones Gráficas, y Sucesiones, Nociones Elementales de Límite y Continuidad[cite: 16].</p>
         `
     },
     plan: {
@@ -43,29 +43,29 @@ const siteContent = {
             <div class="space-y-4">
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900">Unidad I: Conjuntos Numéricos</h4>
-                    <p class="text-xs text-slate-500 mb-2">Objetivo: Emplear de manera lógica los conceptos y técnicas de números naturales, enteros, racionales y reales .</p>
+                    <p class="text-xs text-slate-500 mb-2">Objetivo: Emplear de manera lógica los conceptos y técnicas de números naturales, enteros, racionales y reales[cite: 16].</p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
-                        <li><strong>Obj. 1.1:</strong> Naturales, enteros, racionales y uso de calculadora .</li>
-                        <li><strong>Obj. 1.2:</strong> Números reales y aproximaciones decimales .</li>
-                        <li><strong>Obj. 1.3:</strong> Relación de orden en R, desigualdades y valor absoluto .</li>
+                        <li><strong>Obj. 1.1:</strong> Naturales, enteros, racionales y uso de calculadora[cite: 16].</li>
+                        <li><strong>Obj. 1.2:</strong> Números reales y aproximaciones decimales[cite: 16].</li>
+                        <li><strong>Obj. 1.3:</strong> Relación de orden en R, desigualdades y valor absoluto[cite: 16].</li>
                     </ul>
                 </div>
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900">Unidad II: Funciones y Representaciones Gráficas</h4>
-                    <p class="text-xs text-slate-500 mb-2">Objetivo: Demostrar de manera analítica problemas aplicando relaciones, funciones y gráficas .</p>
+                    <p class="text-xs text-slate-500 mb-2">Objetivo: Demostrar de manera analítica problemas aplicando relaciones, funciones y gráficas[cite: 16].</p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
-                        <li><strong>Obj. II.1:</strong> Sistemas de coordenadas y distancia entre puntos .</li>
-                        <li><strong>Obj. II.2:</strong> Funciones elementales y composición de funciones .</li>
-                        <li><strong>Obj. II.3:</strong> Representaciones gráficas y variables estadísticas .</li>
+                        <li><strong>Obj. 2.1:</strong> Sistemas de coordenadas y distancia entre puntos[cite: 16].</li>
+                        <li><strong>Obj. 2.2:</strong> Funciones elementales y composición de funciones[cite: 16].</li>
+                        <li><strong>Obj. 2.3:</strong> Representaciones gráficas y variables estadísticas[cite: 16].</li>
                     </ul>
                 </div>
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900">Unidad III: Sucesiones, Límite y Continuidad</h4>
-                    <p class="text-xs text-slate-500 mb-2">Objetivo: Aplicar límites y continuidad a sucesiones y funciones .</p>
+                    <p class="text-xs text-slate-500 mb-2">Objetivo: Aplicar límites y continuidad a sucesiones y funciones[cite: 16].</p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
-                        <li><strong>Obj. III.1:</strong> Sucesiones y límites de sucesiones .</li>
-                        <li><strong>Obj. III.2:</strong> Límites de funciones y técnicas de cálculo .</li>
-                        <li><strong>Obj. III.3:</strong> Funciones continuas, Teorema de Bolzano y Valor Intermedio .</li>
+                        <li><strong>Obj. 3.1:</strong> Sucesiones y límites de sucesiones[cite: 16].</li>
+                        <li><strong>Obj. 3.2:</strong> Límites de funciones y técnicas de cálculo[cite: 16].</li>
+                        <li><strong>Obj. 3.3:</strong> Funciones continuas, Teorema de Bolzano y Valor Intermedio[cite: 16].</li>
                     </ul>
                 </div>
             </div>
@@ -76,10 +76,10 @@ const siteContent = {
         html: `
             <p class="text-slate-600 mb-4">Para garantizar el éxito académico en la modalidad a distancia de la UNA, te recomendamos seguir esta rutina:</p>
             <ol class="list-decimal list-inside space-y-2 text-slate-600 text-sm">
-                <li><strong>Organiza tu tiempo:</strong> Emplea al menos 3 horas diarias, 5 días a la semana por cada objetivo (mínimo 26 horas de estudio por objetivo) .</li>
-                <li><strong>Lectura previa:</strong> Lee detalladamente la introducción y el cuadro resumen de repaso antes de abordar cada unidad .</li>
+                <li><strong>Organiza tu tiempo:</strong> Emplea al menos 3 horas diarias, 5 días a la semana por cada objetivo (mínimo 26 horas de estudio por objetivo)[cite: 16].</li>
+                <li><strong>Lectura previa:</strong> Lee detalladamente la introducción y el cuadro resumen de repaso antes de abordar cada unidad[cite: 16].</li>
                 <li><strong>Práctica constante:</strong> Resuelve los ejercicios propuestos en el Módulo y apóyate en los quizzes interactivos de esta plataforma.</li>
-                <li><strong>Aprendizaje colaborativo:</strong> Organiza grupos de estudio de 3 o 4 personas para debatir dudas .</li>
+                <li><strong>Aprendizaje colaborativo:</strong> Organiza grupos de estudio de 3 o 4 personas para debatir dudas[cite: 16].</li>
             </ol>
         `
     }
@@ -132,7 +132,6 @@ function handleCredentialResponse(response) {
     localStorage.setItem('mateuna_user', JSON.stringify(userData));
 
     renderAppUI(userData);
-    
     startSessionTimer();    
     fetchQuestions();
 }
@@ -161,12 +160,9 @@ function updateStudyTimerDisplay(seconds) {
 }
 
 function populateObjectiveButtons() {
-    const objectives = [...new Set(allQuestions.map(q => String(q.Objetivo || q.objective || '').replace(',', '.').trim()))]
-                        .filter(o => o.length > 0)
-                        .sort();
-
+    const objectives = ["1.1", "1.2", "1.3", "2.1", "2.2", "2.3", "3.1", "3.2", "3.3"];
     const selectorContainer = document.querySelector('#view-quiz .flex.gap-2');
-    if (!selectorContainer || objectives.length === 0) return;
+    if (!selectorContainer) return;
 
     selectorContainer.innerHTML = '';
     objectives.forEach(obj => {
@@ -179,10 +175,6 @@ function populateObjectiveButtons() {
         btn.onclick = () => switchObjective(obj);
         selectorContainer.appendChild(btn);
     });
-
-    if (!objectives.includes(currentObjective) && objectives.length > 0) {
-        currentObjective = objectives[0];
-    }
 }
 
 function fetchQuestions() {
@@ -225,7 +217,7 @@ function loadQuestionsForCurrentObjective() {
         const rawObj = q.Objetivo !== undefined ? q.Objetivo : q.objective;
         if (rawObj === undefined || rawObj === null) return false;
         
-        const objStr = String(rawObj).replace(',', '.').trim();
+        const objStr = String(rawObj).replace(',', '.').trim().replace(/^obj\.?\s*/i, '');
         return objStr === currentObjNormalized;
     });
 
@@ -241,7 +233,7 @@ function loadQuestionsForCurrentObjective() {
     const questionTextEl = document.getElementById('question-text');
 
     if (filtered.length === 0) {
-        if (questionTextEl) questionTextEl.innerText = "No hay preguntas disponibles para este objetivo.";
+        if (questionTextEl) questionTextEl.innerText = "No hay preguntas cargadas para este objetivo en la hoja de cálculo.";
         const submitBtn = document.getElementById('submit-btn');
         if (submitBtn) submitBtn.style.display = 'none';
         return;
@@ -263,7 +255,6 @@ function loadQuestionsForCurrentObjective() {
         { text: qData.Opcion3_Incorrecta2 || qData.incorrect2, correct: false }
     ].filter(opt => opt.text !== undefined && opt.text !== "");
 
-    // Mezclar opciones
     for (let i = optionsArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [optionsArray[i], optionsArray[j]] = [optionsArray[j], optionsArray[i]];
@@ -285,7 +276,6 @@ function loadQuestionsForCurrentObjective() {
 function selectOption(selectedBtn, isCorrect) {
     selectedAnswerCorrect = isCorrect;
 
-    // Quitar estilos a los demás botones y resaltar el elegido
     document.querySelectorAll('#options-container button').forEach(btn => {
         btn.classList.remove('border-blue-900', 'bg-blue-50', 'ring-2', 'ring-blue-500');
         btn.classList.add('border-slate-200');
@@ -294,7 +284,6 @@ function selectOption(selectedBtn, isCorrect) {
     selectedBtn.classList.remove('border-slate-200');
     selectedBtn.classList.add('border-blue-900', 'bg-blue-50', 'ring-2', 'ring-blue-500');
 
-    // Habilitar botón de envío
     const submitBtn = document.getElementById('submit-btn');
     if (submitBtn) {
         submitBtn.disabled = false;
@@ -306,7 +295,7 @@ function submitQuiz() {
     if (selectedAnswerCorrect === null) return;
 
     const payload = {
-        email: currentUser ? currentUser.email : "invitado@unasec.edu.ve",
+        email: currentUser ? currentUser.email : "",
         name: currentUser ? currentUser.name : "Estudiante",
         objective: currentObjective,
         isCorrect: selectedAnswerCorrect
@@ -331,8 +320,8 @@ function submitQuiz() {
 
         if (resData.status === "success") {
             const dynamicView = document.getElementById('view-dynamic');
-            if (dynamicView) {
-                loadStudentGrades(dynamicView, resData.successRate, resData.totalAttempts);
+            if (dynamicView && !dynamicView.classList.contains('hidden')) {
+                loadStudentStats(dynamicView, resData.successRate, resData.totalAttempts);
             }
         }
     })
@@ -385,8 +374,10 @@ function showSection(sectionKey) {
         `;
     } else if (sectionKey === 'links') {
         loadSheetDataAsTable('Links', dynamicView, 'Links Importantes de la Universidad');
-    } else if (sectionKey === 'estadisticas' || sectionKey === 'notas') {
-        loadStudentGrades(dynamicView);
+    } else if (sectionKey === 'estadisticas') {
+        loadStudentStats(dynamicView);
+    } else if (sectionKey === 'notas') {
+        loadStudentGradesSheet(dynamicView);
     } else if (sectionKey === 'contacto') {
         loadSheetDataAsTable('Contacto', dynamicView, 'Contacto con Profesores y Asesores');
     } else if (sectionKey === 'examenes') {
@@ -434,12 +425,12 @@ async function loadSheetDataAsTable(sheetName, container, title) {
     }
 }
 
-async function loadStudentGrades(container, successRate = 0, totalAttempts = 0) {
+async function loadStudentStats(container, successRate = 0, totalAttempts = 0) {
     const userEmail = document.getElementById('user-name')?.dataset.email || (currentUser ? currentUser.email : '');
     
     container.innerHTML = `
-        <h2 class="text-xl font-bold text-blue-900 mb-4">Mis Notas y Progreso</h2>
-        <p class="text-slate-400 text-sm mb-4">Estudiante: ${userEmail}</p>
+        <h2 class="text-xl font-bold text-blue-900 mb-4">Estadísticas de Práctica</h2>
+        <p class="text-slate-400 text-sm mb-4">Estudiante: ${userEmail || 'No autenticado'}</p>
         <div>
             <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100 text-center mb-3">
                 <span class="block text-2xl font-bold text-emerald-800">${successRate}%</span>
@@ -450,8 +441,107 @@ async function loadStudentGrades(container, successRate = 0, totalAttempts = 0) 
                 <span class="text-xs text-slate-500 font-medium uppercase">Quizzes Respondidos</span>
             </div>
         </div>
-        <p class="text-slate-500 text-sm">Estas métricas se almacenan localmente en tu navegador para ayudarte a cumplir con la recomendación de la UNA de dedicar al menos 3 horas diarias por objetivo .</p>
+        <p class="text-slate-500 text-sm">Estas métricas reflejan la efectividad en tus cuestionarios de práctica para la asignatura[cite: 16].</p>
     `;
+}
+
+async function loadStudentGradesSheet(container) {
+    const userEmail = (document.getElementById('user-name')?.dataset.email || (currentUser ? currentUser.email : '')).trim().toLowerCase();
+    
+    container.innerHTML = `
+        <h2 class="text-xl font-bold text-blue-900 mb-4">Mis Notas Oficiales</h2>
+        <p class="text-slate-400 text-sm mb-4">Cargando tus calificaciones...</p>
+    `;
+
+    if (!userEmail) {
+        container.innerHTML = `
+            <h2 class="text-xl font-bold text-blue-900 mb-4">Mis Notas Oficiales</h2>
+            <p class="text-amber-600 bg-amber-50 p-4 rounded-xl border border-amber-200 text-sm">
+                Debes iniciar sesión con tu cuenta de Google para ver tu registro de notas.
+            </p>
+        `;
+        return;
+    }
+
+    try {
+        const response = await fetch(`${WEB_APP_URL}?sheet=Notas`);
+        const data = await response.json();
+
+        if (!data || !Array.isArray(data) || data.length === 0) {
+            container.innerHTML = `
+                <h2 class="text-xl font-bold text-blue-900 mb-4">Mis Notas Oficiales</h2>
+                <p class="text-slate-500 text-sm">No hay registros cargados en la planilla de notas aún.</p>
+            `;
+            return;
+        }
+
+        const studentRow = data.find(row => {
+            const rowEmail = (row.Correo || row.correo || row.Email || row.email || '').toString().trim().toLowerCase();
+            return rowEmail === userEmail;
+        });
+
+        if (!studentRow) {
+            container.innerHTML = `
+                <h2 class="text-xl font-bold text-blue-900 mb-4">Mis Notas Oficiales</h2>
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                    <p class="text-slate-700 font-medium mb-1">Estudiante: ${userEmail}</p>
+                    <p class="text-slate-500 text-sm">No se encontraron registros de calificaciones asociados a tu correo institucional.</p>
+                </div>
+            `;
+            return;
+        }
+
+        const objectivesKeys = ["Obj1.1", "Obj1.2", "Obj1.3", "Obj2.1", "Obj2.2", "Obj2.3", "Obj3.1", "Obj3.2", "Obj3.3"];
+
+        let html = `
+            <h2 class="text-xl font-bold text-blue-900 mb-2">Mis Notas Oficiales</h2>
+            <div class="bg-blue-50 border border-blue-100 p-4 rounded-2xl mb-6 flex flex-wrap justify-between items-center gap-2">
+                <div>
+                    <h3 class="font-bold text-blue-900">${studentRow.nombre || studentRow.Nombre || 'Estudiante'}</h3>
+                    <p class="text-xs text-blue-700">${userEmail}</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-xs text-slate-500 uppercase font-semibold block">Nota Final</span>
+                    <span class="text-2xl font-black text-blue-900">${studentRow.Nota || studentRow.nota || '-'}</span>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-slate-600 border-collapse">
+                    <thead class="bg-slate-100 text-slate-700 uppercase text-xs">
+                        <tr>
+                            <th class="p-3 border-b">Objetivo</th>
+                            <th class="p-3 border-b text-center">Estatus / Calificación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
+
+        objectivesKeys.forEach(objKey => {
+            const gradeVal = studentRow[objKey] !== undefined ? studentRow[objKey] : '-';
+            html += `
+                <tr class="border-b border-slate-100 hover:bg-slate-50">
+                    <td class="p-3 font-medium text-slate-800">${objKey}</td>
+                    <td class="p-3 text-center font-bold text-blue-900">${gradeVal}</td>
+                </tr>
+            `;
+        });
+
+        html += `
+                    </tbody>
+                </table>
+            </div>
+        `;
+
+        container.innerHTML = html;
+
+    } catch (e) {
+        console.error(e);
+        container.innerHTML = `
+            <h2 class="text-xl font-bold text-blue-900 mb-4">Mis Notas Oficiales</h2>
+            <p class="text-red-500 text-sm">Ocurrió un error al cargar tus notas desde Google Sheets.</p>
+        `;
+    }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
