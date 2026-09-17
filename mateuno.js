@@ -56,9 +56,9 @@ const siteContent = {
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900">Unidad I: Conjuntos Numéricos</h4>
                     <p class="text-xs text-slate-500 mb-2">Objetivo: Emplear de manera lógica los conceptos y técnicas de números naturales, enteros, racionales y reales.</p>
-                    <li class="font-bold text-blue-900">
-                        <a href="https://drive.google.com/file/d/1s8ZV983yeUz-hzJSosve1bFx878NtoXe/view?usp=sharing" target="_blank"> TEXTO: CONJUNTOS NUMERICOS </a>
-                    </li>
+                    <p class="font-bold text-blue-900">
+                        <a href="https://drive.google.com/file/d/1s8ZV983yeUz-hzJSosve1bFx878NtoXe/view?usp=sharing" target="_blank"> 📖 TEXTO: CONJUNTOS NUMERICOS </a>
+                    </p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
                         <li><strong>Obj. 1.1:</strong> Naturales, enteros, racionales y uso de calculadora.</li>
                         <li><strong>Obj. 1.2:</strong> Números reales y aproximaciones decimales.</li>
@@ -68,9 +68,9 @@ const siteContent = {
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900">Unidad II: Funciones y Representaciones Gráficas</h4>
                     <p class="text-xs text-slate-500 mb-2">Objetivo: Demostrar de manera analítica problemas aplicando relaciones, funciones y gráficas.</p>
-                    <li class="font-bold text-blue-900">
-                        <a href="https://drive.google.com/file/d/1o7rBbGf7SMUv-MMpf0dPyNyX4h3tZEn4/view?usp=sharing" target="_blank"> TEXTO: FUNCIONES </a>
-                    </li>
+                    <p class="font-bold text-blue-900">
+                        <a href="https://drive.google.com/file/d/1o7rBbGf7SMUv-MMpf0dPyNyX4h3tZEn4/view?usp=sharing" target="_blank"> 📖 TEXTO: FUNCIONES </a>
+                    </p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
                         <li><strong>Obj. 2.1:</strong> Sistemas de coordenadas y distancia entre puntos.</li>
                         <li><strong>Obj. 2.2:</strong> Funciones elementales y composición de funciones.</li>
@@ -80,9 +80,9 @@ const siteContent = {
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900">Unidad III: Sucesiones, Límite y Continuidad</h4>
                     <p class="text-xs text-slate-500 mb-2">Objetivo: Aplicar límites y continuidad a sucesiones y funciones.</p>
-                    <li class="font-bold text-blue-900">
-                        <a href="https://drive.google.com/file/d/1Ic_hcviAfr7G2eEhrLNf4FT5rnevGAhs/view?usp=sharing" target="_blank"> TEXTO: SUCESIONES, LIMITES y CONTINUIDAD</a>
-                    </li>
+                    <p class="font-bold text-blue-900">
+                        <a href="https://drive.google.com/file/d/1Ic_hcviAfr7G2eEhrLNf4FT5rnevGAhs/view?usp=sharing" target="_blank"> 📖 TEXTO: SUCESIONES, LIMITES y CONTINUIDAD</a>
+                    </p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
                         <li><strong>Obj. 3.1:</strong> Sucesiones y límites de sucesiones.</li>
                         <li><strong>Obj. 3.2:</strong> Límites de funciones y técnicas de cálculo.</li>
