@@ -72,28 +72,28 @@ const siteContent = {
                     </p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
                         <li><strong>Obj. 1.1:</strong> Naturales, enteros, racionales y uso de calculadora.</li>
-                            <ul>
+                            <ol>
                                 <li>Números naturales.</li>
                                 <li>Números Enteros</li>
                                 <li>Uso de la calculadora.</li>
                                 <li>Operaciones con los números Racionales, Orden en Q.</li>
                                 <li>Ecuaciones con soluciones Racionales.</li>
                                 <li>Aplicaciones.</li>
-                            </ul>
+                            </ol>
                         <li><strong>Obj. 1.2:</strong> Números reales y aproximaciones decimales.</li>
-                            <ul>
+                            <ol>
                                 <li>Expresiones periódicas y no periódicas.</li>
                                 <li>Números Irracionales y Números Reales.</li>
                                 <li>Operaciones con los Números Reales.</li>
                                 <li>Aproximaciones Decimales de Números Reales.</li>
-                            </ul>
+                            </ol>
                         <li><strong>Obj. 1.3:</strong> Relación de orden en R, desigualdades y valor absoluto.</li>
-                            <ul>
+                            <ol>
                                 <li>Orden en R. Desigualdades, Ecuaciones e Inecuaciones.</li>
                                 <li>Valor absoluto de un Número Real. Distancia en R.</li>
                                 <li>Intervalos en R.</li>
                                 <li>Aplicaciones</li>
-                            </ul>
+                            </ol>
                     </ul>
                 </div>
                 <div class="border border-slate-200 p-4 rounded-xl">
