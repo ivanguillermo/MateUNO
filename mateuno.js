@@ -71,28 +71,28 @@ const siteContent = {
                         <a href="https://drive.google.com/file/d/1s8ZV983yeUz-hzJSosve1bFx878NtoXe/view?usp=sharing" target="_blank" class="underline"> 📖 TEXTO: CONJUNTOS NUMÉRICOS </a>
                     </p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
-                        <li><strong>Obj. 1.1:</strong> Naturales, enteros, racionales y uso de calculadora.</li>
+                        <li><strong>Obj. 1.1: Naturales, enteros, racionales y uso de calculadora.</strong></li>
                             <ol>
-                                <li>Números naturales.</li>
-                                <li>Números Enteros</li>
-                                <li>Uso de la calculadora.</li>
-                                <li>Operaciones con los números Racionales, Orden en Q.</li>
-                                <li>Ecuaciones con soluciones Racionales.</li>
-                                <li>Aplicaciones.</li>
+                                <li>• Números naturales.</li>
+                                <li>• Números Enteros</li>
+                                <li>• Uso de la calculadora.</li>
+                                <li>• Operaciones con los números Racionales, Orden en Q.</li>
+                                <li>• Ecuaciones con soluciones Racionales.</li>
+                                <li>• Aplicaciones.</li>
                             </ol>
-                        <li><strong>Obj. 1.2:</strong> Números reales y aproximaciones decimales.</li>
+                        <li><strong>Obj. 1.2: Números reales y aproximaciones decimales.</strong></li>
                             <ol>
-                                <li>Expresiones periódicas y no periódicas.</li>
-                                <li>Números Irracionales y Números Reales.</li>
-                                <li>Operaciones con los Números Reales.</li>
-                                <li>Aproximaciones Decimales de Números Reales.</li>
+                                <li>• Expresiones periódicas y no periódicas.</li>
+                                <li>• Números Irracionales y Números Reales.</li>
+                                <li>• Operaciones con los Números Reales.</li>
+                                <li>• Aproximaciones Decimales de Números Reales.</li>
                             </ol>
-                        <li><strong>Obj. 1.3:</strong> Relación de orden en R, desigualdades y valor absoluto.</li>
+                        <li><strong>Obj. 1.3: Relación de orden en R, desigualdades y valor absoluto.</strong></li>
                             <ol>
-                                <li>Orden en R. Desigualdades, Ecuaciones e Inecuaciones.</li>
-                                <li>Valor absoluto de un Número Real. Distancia en R.</li>
-                                <li>Intervalos en R.</li>
-                                <li>Aplicaciones</li>
+                                <li>• Orden en R. Desigualdades, Ecuaciones e Inecuaciones.</li>
+                                <li>• Valor absoluto de un Número Real. Distancia en R.</li>
+                                <li>• Intervalos en R.</li>
+                                <li>• Aplicaciones</li>
                             </ol>
                     </ul>
                 </div>
@@ -103,9 +103,52 @@ const siteContent = {
                         <a href="https://drive.google.com/file/d/1o7rBbGf7SMUv-MMpf0dPyNyX4h3tZEn4/view?usp=sharing" target="_blank" class="underline"> 📖 TEXTO: FUNCIONES </a>
                     </p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
-                        <li><strong>Obj. 2.1:</strong> Sistemas de coordenadas y distancia entre puntos.</li>
-                        <li><strong>Obj. 2.2:</strong> Funciones elementales y composición de funciones.</li>
-                        <li><strong>Obj. 2.3:</strong> Representaciones gráficas y variables estadísticas.</li>
+                        <li><strong>Obj. 2.1: Sistemas de coordenadas y distancia entre puntos.</strong></li>
+                            <ol>
+                                <li>• Sistemas de Coordenadas.</li>
+                                <li>• Distancia entre dos puntos de un plano.</li>
+                                <li>• Regiones de un plano, ecuaciones, inecuaciones con dos variables.</li>
+                                <li>• Relaciones de proporcionalidad y porcentajes, rectas y semiplanos de un plano.</li>
+                                <li>• Relaciones y funciones, nociones generales.</li>
+                            </ol>
+                        <li><strong>Obj. 2.2: Funciones elementales y composición de funciones.</strong></li>
+                            <ol>
+                                <li>• Funciones elementales: 
+                                    <ul>
+                                        <li> Polinómicas</li>
+                                        <li> Racionales</li>
+                                        <li> Exponenciales</li> 
+                                        <li> Logarítmicas</li> 
+                                        <li> Sucesiones</li>
+                                    </ul>
+                                </li>
+                                <li>• Funciones elementales: 
+                                    <ul>
+                                        <li> Polinómicas</li>
+                                        <li> Racionales</li>
+                                        <li> Exponenciales</li> 
+                                        <li> Logarítmicas</li> 
+                                        <li> Sucesiones</li>
+                                    </ul>
+                                </li>
+                                <li>• Propiedades de las funciones.</li>
+                                 <li>• Álgebra de funciones: 
+                                    <ul> 
+                                        <li> Composición de funciones</li>
+                                        <li> Funciones inyectivas</li> 
+                                        <li> Funciones sobreyectivas</li> 
+                                        <li> Funciones biyectivas</li> 
+                                        <li> Función inversa</li>
+                                    </ul>
+                                </li>                            
+                            </ol>
+                        <li><strong>Obj. 2.3: Representaciones gráficas y variables estadísticas.</strong></li>
+                            <ol>
+                                <li>• Representaciones gráficas: diagramas de barras, de líneas, tortas, (sectores circulares) y pictogramas.</li>
+                                <li>• Variables: continuas y discretas.</li>
+                                <li>• Representaciones gráficas de datos.</li>
+                                <li>• Escalas de representación de números en una recta.</li>
+                            </ol>
                     </ul>
                 </div>
                 <div class="border border-slate-200 p-4 rounded-xl">
@@ -115,9 +158,9 @@ const siteContent = {
                         <a href="https://drive.google.com/file/d/1Ic_hcviAfr7G2eEhrLNf4FT5rnevGAhs/view?usp=sharing" target="_blank" class="underline"> 📖 TEXTO: SUCESIONES, LÍMITES Y CONTINUIDAD</a>
                     </p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
-                        <li><strong>Obj. 3.1:</strong> Sucesiones y límites de sucesiones.</li>
-                        <li><strong>Obj. 3.2:</strong> Límites de funciones y técnicas de cálculo.</li>
-                        <li><strong>Obj. 3.3:</strong> Funciones continuas, Teorema de Bolzano y Valor Intermedio.</li>
+                        <li><strong>Obj. 3.1: Sucesiones y límites de sucesiones.</strong></li>
+                        <li><strong>Obj. 3.2: Límites de funciones y técnicas de cálculo.</strong></li>
+                        <li><strong>Obj. 3.3: Funciones continuas, Teorema de Bolzano y Valor Intermedio.</strong></li>
                     </ul>
                 </div>
             </div>
