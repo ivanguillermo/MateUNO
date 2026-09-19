@@ -112,33 +112,24 @@ const siteContent = {
                                 <li>• Relaciones y funciones, nociones generales.</li>
                             </ol>
                         <li><strong>Obj. 2.2: Funciones elementales y composición de funciones.</strong></li>
-                            <ol>
+                            <ol>                                
                                 <li>• Funciones elementales: 
                                     <ul>
-                                        <li> Polinómicas</li>
-                                        <li> Racionales</li>
-                                        <li> Exponenciales</li> 
-                                        <li> Logarítmicas</li> 
-                                        <li> Sucesiones</li>
-                                    </ul>
-                                </li>
-                                <li>• Funciones elementales: 
-                                    <ul>
-                                        <li> Polinómicas</li>
-                                        <li> Racionales</li>
-                                        <li> Exponenciales</li> 
-                                        <li> Logarítmicas</li> 
-                                        <li> Sucesiones</li>
+                                        <li> ☆ Polinómicas</li>
+                                        <li> ☆ Racionales</li>
+                                        <li> ☆ Exponenciales</li> 
+                                        <li> ☆ Logarítmicas</li> 
+                                        <li> ☆ Sucesiones</li>
                                     </ul>
                                 </li>
                                 <li>• Propiedades de las funciones.</li>
-                                 <li>• Álgebra de funciones: 
+                                <li>• Álgebra de funciones: 
                                     <ul> 
-                                        <li> Composición de funciones</li>
-                                        <li> Funciones inyectivas</li> 
-                                        <li> Funciones sobreyectivas</li> 
-                                        <li> Funciones biyectivas</li> 
-                                        <li> Función inversa</li>
+                                        <li> ☆ Composición de funciones</li>
+                                        <li> ☆ Funciones inyectivas</li> 
+                                        <li> ☆ Funciones sobreyectivas</li> 
+                                        <li> ☆ Funciones biyectivas</li> 
+                                        <li> ☆ Función inversa</li>
                                     </ul>
                                 </li>                            
                             </ol>
