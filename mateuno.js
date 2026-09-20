@@ -438,7 +438,7 @@ function submitQuiz() {
     if (selectedAnswerCorrect === null) return;
 
     const payload = {
-        email: currentUser ? currentUser.email : "",
+        email: currentUser ? currentUser.email : "offline@estudiante.una",
         name: currentUser ? currentUser.name : "Estudiante",
         objective: currentObjective,
         isCorrect: selectedAnswerCorrect
@@ -446,36 +446,61 @@ function submitQuiz() {
 
     const btn = document.getElementById('submit-btn');
     if (btn) {
-        btn.innerText = "Enviando...";
+        btn.innerText = "Evaluando...";
         btn.disabled = true;
     }
 
+    // Evaluar resultado localmente para retroalimentación inmediata
+    const isCorrect = selectedAnswerCorrect;
+
+    // Enviar resultado a Google Sheets
     fetch(WEB_APP_URL, {
         method: "POST",
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify(payload)
     })
     .then(res => res.json())
-    .then(resData => {
-        const resultContainer = document.getElementById('result-container');
-        if (resultContainer) resultContainer.classList.remove('hidden');
-        if (btn) btn.innerText = "Enviar Respuesta";
-
-        if (resData.status === "success") {
-            const dynamicView = document.getElementById('view-dynamic');
-            if (dynamicView && !dynamicView.classList.contains('hidden')) {
-                loadStudentStats(dynamicView, resData.successRate, resData.totalAttempts);
-            }
-        }
-    })
     .catch(err => {
-        console.error("Error al registrar intento:", err);
-        const resultContainer = document.getElementById('result-container');
-        if (resultContainer) resultContainer.classList.remove('hidden');
+        console.warn("Respuesta guardada solo en modo local (sin conexión con Sheets).", err);
+    })
+    .finally(() => {
+        showFeedbackResult(isCorrect);
         if (btn) btn.innerText = "Enviar Respuesta";
     });
 }
 
+function showFeedbackResult(isCorrect) {
+    const resultContainer = document.getElementById('result-container');
+    if (!resultContainer) return;
+
+    resultContainer.classList.remove('hidden');
+
+    if (isCorrect) {
+        resultContainer.className = "bg-emerald-50 border border-emerald-200 p-6 rounded-2xl text-center my-4";
+        resultContainer.innerHTML = `
+            <div class="flex items-center justify-center gap-2 mb-2">
+                <span class="text-2xl">✅</span>
+                <h3 class="text-xl font-bold text-emerald-800">¡Respuesta Correcta!</h3>
+            </div>
+            <p class="text-emerald-700 text-sm mb-4">Excelente trabajo. Has dominado este ítem.</p>
+            <button onclick="loadQuestionsForCurrentObjective()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-xl text-sm font-medium transition shadow-sm">
+                Siguiente Pregunta
+            </button>
+        `;
+    } else {
+        resultContainer.className = "bg-rose-50 border border-rose-200 p-6 rounded-2xl text-center my-4";
+        resultContainer.innerHTML = `
+            <div class="flex items-center justify-center gap-2 mb-2">
+                <span class="text-2xl">❌</span>
+                <h3 class="text-xl font-bold text-rose-800">Respuesta Incorrecta</h3>
+            </div>
+            <p class="text-rose-700 text-sm mb-4">Revisa el material de estudio e inténtalo nuevamente.</p>
+            <button onclick="loadQuestionsForCurrentObjective()" class="bg-rose-600 hover:bg-rose-700 text-white px-6 py-2.5 rounded-xl text-sm font-medium transition shadow-sm">
+                Intentar Otra Pregunta
+            </button>
+        `;
+    }
+}
 function logoutUser() {
     if(timerInterval) clearInterval(timerInterval);
     localStorage.removeItem('mateuna_user');
@@ -737,4 +762,16 @@ if ('serviceWorker' in navigator) {
                 console.error('Error al registrar Service Worker:', err);
             });
     });
+}
+
+function loginOfflineMode() {
+    const offlineUser = {
+        name: "Estudiante (Offline)",
+        email: "offline@estudiante.una"
+    };
+    currentUser = offlineUser;
+    localStorage.setItem('mateuna_user', JSON.stringify(offlineUser));
+    renderAppUI(offlineUser);
+    startSessionTimer();
+    fetchQuestions();
 }
