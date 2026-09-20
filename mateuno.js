@@ -83,16 +83,16 @@ const siteContent = {
                         <li><strong>Obj. 1.2: Números reales y aproximaciones decimales.</strong></li>
                             <ol>
                                 <li>• 1.2.1 <a href="https://drive.google.com/file/d/1SCNIeDF85tNlNxawz-yjFcda36A0zY0R/view?usp=sharing"> <u>Expresiones periódicas y no periódicas.</u></a></li>
-                                <li>• 1.2.2 <a href=""> <u>Números Irracionales y Números Reales.</u></a></li>
-                                <li>• 1.2.3 <a href=""> <u>Operaciones con los Números Reales.</u></a></li>
-                                <li>• 1.2.4 <a href=""> <u>Aproximaciones Decimales de Números Reales.</u></a></li>
+                                <li>• 1.2.2 <a href="https://drive.google.com/file/d/1ddtJp9YEoPw7abi6fepxpR-iR2CheQX2/view?usp=sharing"> <u>Números Irracionales y Números Reales.</u></a></li>
+                                <li>• 1.2.3 <a href="https://drive.google.com/file/d/1ddtJp9YEoPw7abi6fepxpR-iR2CheQX2/view?usp=sharing"> <u>Operaciones con los Números Reales.</u></a></li>
+                                <li>• 1.2.4 <a href="https://drive.google.com/file/d/1-MkcKT4B_cunoakN5eTGF8vYmrjvZGiR/view?usp=sharing"> <u>Aproximaciones Decimales de Números Reales.</u></a></li>
                             </ol>
                         <li><strong>Obj. 1.3: Relación de orden en R, desigualdades y valor absoluto.</strong></li>
                             <ol>
-                                <li>• 1.3.1 <a href=""> <u>Orden en R. Desigualdades, Ecuaciones e Inecuaciones.</u></a></li>
-                                <li>• 1.3.2 <a href=""> <u>Valor absoluto de un Número Real. Distancia en R.</u></a></li>
-                                <li>• 1.3.3 <a href=""> <u>Intervalos en R.</u></a></li>
-                                <li>• 1.3.4 <a href=""> <u>Aplicaciones</u></a></li>
+                                <li>• 1.3.1 <a href="https://drive.google.com/file/d/1rPnfsD0ehy1fv7mO29uLieMiPXtUNXyB/view?usp=sharing"> <u>Orden en R. Desigualdades, Ecuaciones e Inecuaciones.</u></a></li>
+                                <li>• 1.3.2 <a href="https://drive.google.com/file/d/1LE1BhnqqI9iac-rxRPm8NqamhfrGHojU/view?usp=sharing"> <u>Valor absoluto de un Número Real. Distancia en R.</u></a></li>
+                                <li>• 1.3.3 <a href="https://drive.google.com/file/d/1Rdx6JtGbPzvO2jT-xXQxa-RjzjG87woj/view?usp=drive_link"> <u>Intervalos en R.</u></a></li>
+                                <li>• 1.3.4 <a href="https://drive.google.com/file/d/1jkRibFnzZI2WZg6MMZGqdt8vY5ugZgjq/view?usp=sharing"> <u>Aplicaciones</u></a></li>
                             </ol>
                         <a href="https://drive.google.com/file/d/1og6QMU5AcBoLeChs8Dm69hFX13QZtQ9s/view?usp=sharing"><li><u><strong>AUTOEVALUACION Modulo 1</strong></u></li></a>
                     </ul>
