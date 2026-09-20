@@ -106,15 +106,15 @@ const siteContent = {
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
                         <li><strong>Obj. 2.1: Sistemas de coordenadas y distancia entre puntos.</strong></li>
                             <ol>
-                                <li>• Sistemas de Coordenadas.</li>
-                                <li>• Distancia entre dos puntos de un plano.</li>
-                                <li>• Regiones de un plano, ecuaciones, inecuaciones con dos variables.</li>
-                                <li>• Relaciones de proporcionalidad y porcentajes, rectas y semiplanos de un plano.</li>
-                                <li>• Relaciones y funciones, nociones generales.</li>
+                                <li>• 2.1.1 Sistemas de Coordenadas.</li>
+                                <li>• 2.1.2 Distancia entre dos puntos de un plano.</li>
+                                <li>• 2.1.3 Regiones de un plano, ecuaciones, inecuaciones con dos variables.</li>
+                                <li>• 2.1.4 Relaciones de proporcionalidad y porcentajes, rectas y semiplanos de un plano.</li>
+                                <li>• 2.1.5 Relaciones y funciones, nociones generales.</li>
                             </ol>
                         <li><strong>Obj. 2.2: Funciones elementales y composición de funciones.</strong></li>
                             <ol>                                
-                                <li>• Funciones elementales: 
+                                <li>• 2.2.1 Funciones elementales: 
                                     <ul>
                                         <li> ☆ Polinómicas</li>
                                         <li> ☆ Racionales</li>
@@ -123,8 +123,8 @@ const siteContent = {
                                         <li> ☆ Sucesiones</li>
                                     </ul>
                                 </li>
-                                <li>• Propiedades de las funciones.</li>
-                                <li>• Álgebra de funciones: 
+                                <li>• 2.2.2 Propiedades de las funciones.</li>
+                                <li>• 2.2.3 Álgebra de funciones: 
                                     <ul> 
                                         <li> ☆ Composición de funciones</li>
                                         <li> ☆ Funciones inyectivas</li> 
@@ -136,10 +136,10 @@ const siteContent = {
                             </ol>
                         <li><strong>Obj. 2.3: Representaciones gráficas y variables estadísticas.</strong></li>
                             <ol>
-                                <li>• Representaciones gráficas: diagramas de barras, de líneas, tortas, (sectores circulares) y pictogramas.</li>
-                                <li>• Variables: continuas y discretas.</li>
-                                <li>• Representaciones gráficas de datos.</li>
-                                <li>• Escalas de representación de números en una recta.</li>
+                                <li>• 2.3.1 Representaciones gráficas: diagramas de barras, de líneas, tortas, (sectores circulares) y pictogramas.</li>
+                                <li>• 2.3.2 Variables: continuas y discretas.</li>
+                                <li>• 2.3.3 Representaciones gráficas de datos.</li>
+                                <li>• 2.3.4 Escalas de representación de números en una recta.</li>
                             </ol>
                     </ul>
                 </div>
@@ -152,32 +152,32 @@ const siteContent = {
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
                         <li><strong>Obj. 3.1: Sucesiones y límites de sucesiones.</strong></li>
                             <ol>
-                                <li>• Sucesiones</li>
-                                <li>• Aproximaciones.</li>
-                                <li>• Aproximación del área del circulo</li>
-                                <li>• Aproximación de números por fórmulas de recurrencia.</li>
-                                <li>• Idea intuitiva de límites de sucesiones.</li>
-                                <li>• Interpretación gráfica del límite de una sucesión.</li>
-                                <li>• Cálculo de límites de sucesiones.</li>
+                                <li>• 3.1.1 Sucesiones</li>
+                                <li>• 3.1.2 Aproximaciones.</li>
+                                <li>• 3.1.3 Aproximación del área del circulo</li>
+                                <li>• 3.1.4 Aproximación de números por fórmulas de recurrencia.</li>
+                                <li>• 3.1.5 Idea intuitiva de límites de sucesiones.</li>
+                                <li>• 3.1.6 Interpretación gráfica del límite de una sucesión.</li>
+                                <li>• 3.1.7 Cálculo de límites de sucesiones.</li>
                             </ol>
                         <li><strong>Obj. 3.2: Límites de funciones y técnicas de cálculo.</strong></li>
                             <ol>
-                                <li>• Idea intuitiva de límites de funciones.</li>
-                                <li>• Límites laterales.</li>
-                                <li>• Relación de los límites laterales con la existencia del límite de una función en un punto.</li>
-                                <li>• Técnicas para el cálculo de límites.</li>
-                                <li>• Límites infinitos y límites al infinito.</li>
+                                <li>• 3.2.1 Idea intuitiva de límites de funciones.</li>
+                                <li>• 3.2.2 Límites laterales.</li>
+                                <li>• 3.2.3 Relación de los límites laterales con la existencia del límite de una función en un punto.</li>
+                                <li>• 3.2.4 Técnicas para el cálculo de límites.</li>
+                                <li>• 3.2.5 Límites infinitos y límites al infinito.</li>
                             </ol>
                         <li><strong>Obj. 3.3: Funciones continuas, Teorema de Bolzano y Valor Intermedio.</strong></li>
                             <ol>
-                                <li>• Noción Intuitiva de Continuidad.</li>
-                                <li>• Utilidad de las Funciones Continuas.</li>
-                                <li>• Continuidad e Intervalos.</li>
-                                <li>• Álgebras de Funciones Continuas.</li>
-                                <li>• Composición de Funciones Continuas.</li>
-                                <li>• Teorema de Bolzano.</li>
-                                <li>• Teorema del Valor Intermedio.</li>
-                                <li>• Aplicaciones.</li>
+                                <li>• 3.3.1 Noción Intuitiva de Continuidad.</li>
+                                <li>• 3.3.2 Utilidad de las Funciones Continuas.</li>
+                                <li>• 3.3.3 Continuidad e Intervalos.</li>
+                                <li>• 3.3.4 Álgebras de Funciones Continuas.</li>
+                                <li>• 3.3.5 Composición de Funciones Continuas.</li>
+                                <li>• 3.3.6 Teorema de Bolzano.</li>
+                                <li>• 3.3.7 Teorema del Valor Intermedio.</li>
+                                <li>• 3.3.8 Aplicaciones.</li>
                             </ol>
                     </ul>
                 </div>
