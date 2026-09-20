@@ -150,8 +150,34 @@ const siteContent = {
                     </p>
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
                         <li><strong>Obj. 3.1: Sucesiones y límites de sucesiones.</strong></li>
+                            <ol>
+                                <li>• Sucesiones</li>
+                                <li>• Aproximaciones.</li>
+                                <li>• Aproximación del área del circulo</li>
+                                <li>• Aproximación de números por fórmulas de recurrencia.</li>
+                                <li>• Idea intuitiva de límites de sucesiones.</li>
+                                <li>• Interpretación gráfica del límite de una sucesión.</li>
+                                <li>• Cálculo de límites de sucesiones.</li>
+                            </ol>
                         <li><strong>Obj. 3.2: Límites de funciones y técnicas de cálculo.</strong></li>
+                            <ol>
+                                <li>• Idea intuitiva de límites de funciones.</li>
+                                <li>• Límites laterales.</li>
+                                <li>• Relación de los límites laterales con la existencia del límite de una función en un punto.</li>
+                                <li>• Técnicas para el cálculo de límites.</li>
+                                <li>• Límites infinitos y límites al infinito.</li>
+                            </ol>
                         <li><strong>Obj. 3.3: Funciones continuas, Teorema de Bolzano y Valor Intermedio.</strong></li>
+                            <ol>
+                                <li>• Noción Intuitiva de Continuidad.</li>
+                                <li>• Utilidad de las Funciones Continuas.</li>
+                                <li>• Continuidad e Intervalos.</li>
+                                <li>• Álgebras de Funciones Continuas.</li>
+                                <li>• Composición de Funciones Continuas.</li>
+                                <li>• Teorema de Bolzano.</li>
+                                <li>• Teorema del Valor Intermedio.</li>
+                                <li>• Aplicaciones.</li>
+                            </ol>
                     </ul>
                 </div>
             </div>
