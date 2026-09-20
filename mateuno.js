@@ -73,19 +73,19 @@ const siteContent = {
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
                         <li><strong>Obj. 1.1: Naturales, enteros, racionales y uso de calculadora.</strong></li>
                             <ol>
-                                <a href="https://drive.google.com/file/d/1yd_5yR81gStJecOfkZKkXR7P1dxcghPn/view?usp=sharing"><li>• 1.1.1 Números naturales.</li></a>
-                                <a href="https://drive.google.com/file/d/13SMIlcwBKERIfv4qYRKWqvxY4s7yUjs-/view?usp=sharing"><li>• 1.1.2 Números Enteros</li></a>
-                                <a href="https://drive.google.com/file/d/1Efi2Ouy8COGWW9ydLemh953fYoZnOk30/view?usp=sharing"><li>• 1.1.3 Números Racionales</li></a>
-                                <a href="https://drive.google.com/file/d/1uAy4_qJQybVzRdD0lpHXpQUJYq0T3LuO/view?usp=sharing"><li>• 1.1.4 Uso de la calculadora.</li></a>
-                                <a href="https://drive.google.com/file/d/1dWLteHcOXKsGnpzGi57FnUqo4hKjSNLY/view?usp=sharing"><li>• 1.1.5 Operaciones con los números Racionales, Orden en Q.</li></a>
-                                <a href="https://drive.google.com/file/d/1wJeMCpm-ORLE1dQifADbIhgAKPWLcw-w/view?usp=drive_link"><li>• 1.1.6 Ecuaciones con soluciones Racionales y Aplicaciones.</li></a>
+                                <li>• 1.1.1 <a href="https://drive.google.com/file/d/1yd_5yR81gStJecOfkZKkXR7P1dxcghPn/view?usp=sharing">Números naturales.</a></li>
+                                <li>• 1.1.2 <a href="https://drive.google.com/file/d/13SMIlcwBKERIfv4qYRKWqvxY4s7yUjs-/view?usp=sharing"> Números Enteros</a></li>
+                                <li>• 1.1.3 <a href="https://drive.google.com/file/d/1Efi2Ouy8COGWW9ydLemh953fYoZnOk30/view?usp=sharing"> Números Racionales</a></li>
+                                <li>• 1.1.4 <a href="https://drive.google.com/file/d/1uAy4_qJQybVzRdD0lpHXpQUJYq0T3LuO/view?usp=sharing"> Uso de la calculadora.</a></li>
+                                <li>• 1.1.5 <a href="https://drive.google.com/file/d/1dWLteHcOXKsGnpzGi57FnUqo4hKjSNLY/view?usp=sharing"> Operaciones con los números Racionales, Orden en Q.</a></li>
+                                <li>• 1.1.6 <a href="https://drive.google.com/file/d/1wJeMCpm-ORLE1dQifADbIhgAKPWLcw-w/view?usp=sharing"> Ecuaciones con soluciones Racionales y Aplicaciones.</a></li>
                             </ol>
                         <li><strong>Obj. 1.2: Números reales y aproximaciones decimales.</strong></li>
                             <ol>
-                                <li>• Expresiones periódicas y no periódicas.</li>
-                                <li>• Números Irracionales y Números Reales.</li>
-                                <li>• Operaciones con los Números Reales.</li>
-                                <li>• Aproximaciones Decimales de Números Reales.</li>
+                                <li>• 1.2.1 <a href="https://drive.google.com/file/d/1SCNIeDF85tNlNxawz-yjFcda36A0zY0R/view?usp=sharing"> Expresiones periódicas y no periódicas.</a></li>
+                                <li>• 1.2.2 <a href=""> Números Irracionales y Números Reales.</a></li>
+                                <li>• 1.2.3 <a href=""> Operaciones con los Números Reales.</a></li>
+                                <li>• 1.2.4 <a href=""> Aproximaciones Decimales de Números Reales.</a></li>
                             </ol>
                         <li><strong>Obj. 1.3: Relación de orden en R, desigualdades y valor absoluto.</strong></li>
                             <ol>
