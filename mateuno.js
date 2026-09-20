@@ -73,12 +73,12 @@ const siteContent = {
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
                         <li><strong>Obj. 1.1: Naturales, enteros, racionales y uso de calculadora.</strong></li>
                             <ol>
-                                <li>• Números naturales.</li>
-                                <li>• Números Enteros</li>
-                                <li>• Uso de la calculadora.</li>
-                                <li>• Operaciones con los números Racionales, Orden en Q.</li>
-                                <li>• Ecuaciones con soluciones Racionales.</li>
-                                <li>• Aplicaciones.</li>
+                                <a href="https://drive.google.com/file/d/1yd_5yR81gStJecOfkZKkXR7P1dxcghPn/view?usp=sharing"><li>• 1.1.1 Números naturales.</li></a>
+                                <a href="https://drive.google.com/file/d/13SMIlcwBKERIfv4qYRKWqvxY4s7yUjs-/view?usp=sharing"><li>• 1.1.2 Números Enteros</li></a>
+                                <a href="https://drive.google.com/file/d/1Efi2Ouy8COGWW9ydLemh953fYoZnOk30/view?usp=sharing"><li>• 1.1.3 Números Racionales</li></a>
+                                <a href="https://drive.google.com/file/d/1uAy4_qJQybVzRdD0lpHXpQUJYq0T3LuO/view?usp=sharing"><li>• 1.1.4 Uso de la calculadora.</li></a>
+                                <a href="https://drive.google.com/file/d/1dWLteHcOXKsGnpzGi57FnUqo4hKjSNLY/view?usp=sharing"><li>• 1.1.5 Operaciones con los números Racionales, Orden en Q.</li></a>
+                                <a href="https://drive.google.com/file/d/1wJeMCpm-ORLE1dQifADbIhgAKPWLcw-w/view?usp=drive_link"><li>• 1.1.6 Ecuaciones con soluciones Racionales y Aplicaciones.</li></a>
                             </ol>
                         <li><strong>Obj. 1.2: Números reales y aproximaciones decimales.</strong></li>
                             <ol>
