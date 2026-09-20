@@ -89,10 +89,10 @@ const siteContent = {
                             </ol>
                         <li><strong>Obj. 1.3: Relación de orden en R, desigualdades y valor absoluto.</strong></li>
                             <ol>
-                                <li>• 1.3.1 <a href=""> <u>Orden en R. Desigualdades, Ecuaciones e Inecuaciones.</a></li>
-                                <li>• 1.3.2 <a href=""> <u>Valor absoluto de un Número Real. Distancia en R.</a></li>
-                                <li>• 1.3.3 <a href=""> <u>Intervalos en R.</a></li>
-                                <li>• 1.3.4 <a href=""> <u>Aplicaciones</a></li>
+                                <li>• 1.3.1 <a href=""> <u>Orden en R. Desigualdades, Ecuaciones e Inecuaciones.</u></a></li>
+                                <li>• 1.3.2 <a href=""> <u>Valor absoluto de un Número Real. Distancia en R.</u></a></li>
+                                <li>• 1.3.3 <a href=""> <u>Intervalos en R.</u></a></li>
+                                <li>• 1.3.4 <a href=""> <u>Aplicaciones</u></a></li>
                             </ol>
                         <li><strong>AUTOEVALUACION Modulo 1</strong></li>
                     </ul>
