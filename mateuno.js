@@ -94,7 +94,7 @@ const siteContent = {
                                 <li>• 1.3.3 <a href=""> <u>Intervalos en R.</u></a></li>
                                 <li>• 1.3.4 <a href=""> <u>Aplicaciones</u></a></li>
                             </ol>
-                        <li><strong>AUTOEVALUACION Modulo 1</strong></li>
+                        <a href="https://drive.google.com/file/d/1og6QMU5AcBoLeChs8Dm69hFX13QZtQ9s/view?usp=sharing"><li><u><strong>AUTOEVALUACION Modulo 1</strong></u></li></a>
                     </ul>
                 </div>
                 <div class="border border-slate-200 p-4 rounded-xl">
