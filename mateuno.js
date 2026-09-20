@@ -73,27 +73,28 @@ const siteContent = {
                     <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
                         <li><strong>Obj. 1.1: Naturales, enteros, racionales y uso de calculadora.</strong></li>
                             <ol>
-                                <li>• 1.1.1 <a href="https://drive.google.com/file/d/1yd_5yR81gStJecOfkZKkXR7P1dxcghPn/view?usp=sharing">Números naturales.</a></li>
-                                <li>• 1.1.2 <a href="https://drive.google.com/file/d/13SMIlcwBKERIfv4qYRKWqvxY4s7yUjs-/view?usp=sharing"> Números Enteros</a></li>
-                                <li>• 1.1.3 <a href="https://drive.google.com/file/d/1Efi2Ouy8COGWW9ydLemh953fYoZnOk30/view?usp=sharing"> Números Racionales</a></li>
-                                <li>• 1.1.4 <a href="https://drive.google.com/file/d/1uAy4_qJQybVzRdD0lpHXpQUJYq0T3LuO/view?usp=sharing"> Uso de la calculadora.</a></li>
-                                <li>• 1.1.5 <a href="https://drive.google.com/file/d/1dWLteHcOXKsGnpzGi57FnUqo4hKjSNLY/view?usp=sharing"> Operaciones con los números Racionales, Orden en Q.</a></li>
-                                <li>• 1.1.6 <a href="https://drive.google.com/file/d/1wJeMCpm-ORLE1dQifADbIhgAKPWLcw-w/view?usp=sharing"> Ecuaciones con soluciones Racionales y Aplicaciones.</a></li>
+                                <li>• 1.1.1 <a href="https://drive.google.com/file/d/1yd_5yR81gStJecOfkZKkXR7P1dxcghPn/view?usp=sharing"> <u>Números naturales.</u></a></li>
+                                <li>• 1.1.2 <a href="https://drive.google.com/file/d/13SMIlcwBKERIfv4qYRKWqvxY4s7yUjs-/view?usp=sharing"> <u>Números Enteros</u></a></li>
+                                <li>• 1.1.3 <a href="https://drive.google.com/file/d/1Efi2Ouy8COGWW9ydLemh953fYoZnOk30/view?usp=sharing"> <u>Números Racionales</u></a></li>
+                                <li>• 1.1.4 <a href="https://drive.google.com/file/d/1uAy4_qJQybVzRdD0lpHXpQUJYq0T3LuO/view?usp=sharing"> <u>Uso de la calculadora.</u></a></li>
+                                <li>• 1.1.5 <a href="https://drive.google.com/file/d/1dWLteHcOXKsGnpzGi57FnUqo4hKjSNLY/view?usp=sharing"> <u>Operaciones con los números Racionales, Orden en Q.</u></a></li>
+                                <li>• 1.1.6 <a href="https://drive.google.com/file/d/1wJeMCpm-ORLE1dQifADbIhgAKPWLcw-w/view?usp=sharing"> <u>Ecuaciones con soluciones Racionales y Aplicaciones.</u></a></li>
                             </ol>
                         <li><strong>Obj. 1.2: Números reales y aproximaciones decimales.</strong></li>
                             <ol>
-                                <li>• 1.2.1 <a href="https://drive.google.com/file/d/1SCNIeDF85tNlNxawz-yjFcda36A0zY0R/view?usp=sharing"> Expresiones periódicas y no periódicas.</a></li>
-                                <li>• 1.2.2 <a href=""> Números Irracionales y Números Reales.</a></li>
-                                <li>• 1.2.3 <a href=""> Operaciones con los Números Reales.</a></li>
-                                <li>• 1.2.4 <a href=""> Aproximaciones Decimales de Números Reales.</a></li>
+                                <li>• 1.2.1 <a href="https://drive.google.com/file/d/1SCNIeDF85tNlNxawz-yjFcda36A0zY0R/view?usp=sharing"> <u>Expresiones periódicas y no periódicas.</u></a></li>
+                                <li>• 1.2.2 <a href=""> <u>Números Irracionales y Números Reales.</u></a></li>
+                                <li>• 1.2.3 <a href=""> <u>Operaciones con los Números Reales.</u></a></li>
+                                <li>• 1.2.4 <a href=""> <u>Aproximaciones Decimales de Números Reales.</u></a></li>
                             </ol>
                         <li><strong>Obj. 1.3: Relación de orden en R, desigualdades y valor absoluto.</strong></li>
                             <ol>
-                                <li>• Orden en R. Desigualdades, Ecuaciones e Inecuaciones.</li>
-                                <li>• Valor absoluto de un Número Real. Distancia en R.</li>
-                                <li>• Intervalos en R.</li>
-                                <li>• Aplicaciones</li>
+                                <li>• 1.3.1 <a href=""> <u>Orden en R. Desigualdades, Ecuaciones e Inecuaciones.</a></li>
+                                <li>• 1.3.2 <a href=""> <u>Valor absoluto de un Número Real. Distancia en R.</a></li>
+                                <li>• 1.3.3 <a href=""> <u>Intervalos en R.</a></li>
+                                <li>• 1.3.4 <a href=""> <u>Aplicaciones</a></li>
                             </ol>
+                        <li><strong>AUTOEVALUACION Modulo 1</strong></li>
                     </ul>
                 </div>
                 <div class="border border-slate-200 p-4 rounded-xl">
