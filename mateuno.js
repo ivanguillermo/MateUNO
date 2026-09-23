@@ -187,13 +187,67 @@ const siteContent = {
     ruta: {
         title: "Ruta de Estudio Recomendada",
         html: `
-            <p class="text-slate-600 mb-4">Para garantizar el éxito académico en la modalidad a distancia de la UNA, te recomendamos seguir esta rutina:</p>
-            <ol class="list-decimal list-inside space-y-2 text-slate-600 text-sm">
-                <li><strong>Organiza tu tiempo:</strong> Emplea al menos 3 horas diarias, 5 días a la semana por cada objetivo (mínimo 26 horas de estudio por objetivo).</li>
-                <li><strong>Lectura previa:</strong> Lee detalladamente la introducción y el cuadro resumen de repaso antes de abordar cada unidad.</li>
-                <li><strong>Práctica constante:</strong> Resuelve los ejercicios propuestos en el Módulo y apóyate en los quizzes interactivos de esta plataforma.</li>
-                <li><strong>Aprendizaje colaborativo:</strong> Organiza grupos de estudio de 3 o 4 personas para debatir dudas.</li>
-            </ol>
+            <p class="text-slate-600 mb-4">Para un estudiante nuevo en la Universidad Nacional Abierta (UNA), adaptarse a la modalidad a distancia es más sencillo si sigues esta ruta de trabajo ordenada:</p>
+
+            <div class="space-y-4">
+                <!-- Paso 1 -->
+                <div class="border border-slate-200 p-4 rounded-xl">
+                    <h4 class="font-bold text-blue-900 mb-1">1. Conoce las reglas del juego (Plan de Curso e Instructivo Oficial)</h4>
+                    <ul class="list-disc list-inside space-y-1 text-slate-600 text-sm">
+                        <li><strong>Revisa los enlaces de utilidad:</strong> Antes de empezar, entra en la sección de <strong>Links Importantes</strong> para consultar el Plan de Curso oficial y el blog de Diseño Académico UNA donde se publican las evaluaciones.</li>
+                        <li><strong>Entiende la evaluación (Los 2 TSP):</strong> La materia se evalúa mediante dos <strong>Trabajos Sustitutivos de Pruebas (TSP1 y TSP2)</strong>, los cuales evalúan el primer y segundo 50% de los objetivos, respectivamente.</li>
+                        <li><strong>¿Qué es un TSP y cómo se responde?</strong> Es un examen para resolver en casa donde debes desarrollar analítica y algebraicamente cada paso respaldado por el texto UNA. Cuentas con un lapso continuo de máximo 48 horas desde su publicación hasta la entrega (no hay prórrogas).</li>
+                        <li><strong>Formato y envío estricto:</strong> 
+                            <ul class="list-circle list-inside ml-4 space-y-0.5 text-xs text-slate-500 mt-1">
+                                <li>• Debes incluir obligatoriamente la portada oficial.</li>
+                                <li>• Si lo haces a mano, usa bolígrafo o marcador fino negro con letra clara; si es en computadora, usa tipo Arial 11 o Times New Roman 12 con editor de ecuaciones.</li>
+                                <li>• Guarda todo en un <strong>único archivo PDF</strong> con la nomenclatura requerida: <code class="bg-slate-100 text-slate-700 px-1 rounded">Código / TSP / Nombre y Apellido / C.I. / Lapso</code>.</li>
+                                <li>• La entrega se realiza por la vía estipulada para tu Centro Local (Google Classroom asignado).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="border border-slate-200 p-4 rounded-xl">
+                    <h4 class="font-bold text-blue-900 mb-1">2. Revisa los Objetivos y contacta a tu Asesor</h4>
+                    <ul class="list-disc list-inside space-y-1 text-slate-600 text-sm">
+                        <li>Consulta en el Plan de Curso qué objetivos corresponden al <strong>TSP1</strong> y cuáles al <strong>TSP2</strong>.</li>
+                        <li><strong>Mantén contacto con tus asesores:</strong> Identifica quién es tu profesor o asesor designado para la materia en tu Centro Local para aclarar dudas administrativas o de contenido.</li>
+                    </ul>
+                </div>
+
+                <!-- Paso 3 -->
+                <div class="border border-slate-200 p-4 rounded-xl">
+                    <h4 class="font-bold text-blue-900 mb-1">3. Busca tus Objetivos y Materiales en la App</h4>
+                    <p class="text-slate-600 text-sm">Dirígete a la sección <strong>"Plan de Curso"</strong> de esta plataforma:</p>
+                    <ul class="list-disc list-inside space-y-1 text-slate-600 text-sm mt-1">
+                        <li>Selecciona el objetivo específico que vas a preparar.</li>
+                        <li>Consulta directamente los PDF de guías y módulos de estudio correspondientes.</li>
+                    </ul>
+                </div>
+
+                <!-- Paso 4 -->
+                <div class="border border-slate-200 p-4 rounded-xl">
+                    <h4 class="font-bold text-blue-900 mb-1">4. Asiste a las Jornadas de Orientación</h4>
+                    <p class="text-slate-600 text-sm">Revisa la programación de las clases y jornadas de orientación presenciales o virtuales organizadas por tu Centro Local. Confirma qué objetivos se tratarán para repasarlos previamente en la app y llegar con dudas concretas.</p>
+                </div>
+
+                <!-- Paso 5 -->
+                <div class="border border-slate-200 p-4 rounded-xl">
+                    <h4 class="font-bold text-blue-900 mb-1">5. Práctica con Libros, Ejemplos y Quizzes</h4>
+                    <ul class="list-disc list-inside space-y-1 text-slate-600 text-sm">
+                        <li><strong>Estudio del texto base:</strong> Desarrolla los ejercicios propuestos del libro o módulo oficial respaldando cada procedimiento algebraico.</li>
+                        <li><strong>Validación en la app:</strong> Pon a prueba lo aprendido resolviendo los <strong>Quizzes Interactivos</strong> de nuestra plataforma para evaluar tu nivel de comprensión inmediata.</li>
+                    </ul>
+                </div>
+
+                <!-- Paso 6 -->
+                <div class="border border-slate-200 p-4 rounded-xl">
+                    <h4 class="font-bold text-blue-900 mb-1">6. Entrena con Exámenes Viejos y Problemas Resueltos</h4>
+                    <p class="text-slate-600 text-sm">Cuando te aproximes a la fecha del TSP, entra a la sección de <strong>"Exámenes Viejos"</strong> en el menú lateral. Selecciona el objetivo a evaluar y resuelve modelos anteriores guiándote paso a paso.</p>
+                </div>
+            </div>
         `
     }
 };
