@@ -18,7 +18,19 @@
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="mateuno.css">
 
-    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="055e1e8e-333b-4b14-822d-9915ebc586e7";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+    <script type="text/javascript">
+        window.$crisp=[];
+
+        window.$crisp.push(["set", "session:data", [["language", "es"]]]);
+        window.$crisp.push(["config", "locale:fallback", ["es"]]);
+        
+        window.CRISP_WEBSITE_ID="055e1e8e-333b-4b14-822d-9915ebc586e7";
+        (function(){d=document;s=d.createElement("script");
+                    s.src="https://client.crisp.chat/l.js";
+                    s.async=1;d.getElementsByTagName("head")[0].appendChild(s);
+                   })()
+            ;
+    </script>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
 
