@@ -633,8 +633,63 @@ function showSection(sectionKey) {
         loadSheetDataAsTable('Examenes', dynamicView, 'Fechas de Exámenes y Calendario Oficial');
     } else if (sectionKey === 'clases') {
         loadSheetDataAsTable('Clases', dynamicView, 'Fechas y Horarios de Clases');
+    } else if (sectionKey === 'plan') {
+        loadPlanCursoDynamic('plan', dynamicView, 'Plan de Curso de la Materia');
     } else if (sectionKey === 'viejos') {
         loadSheetDataAsTable('Viejos', dynamicView, 'Archivo de Exámenes Anteriores');
+    }
+}
+
+// Función para cargar e inyectar el Plan de Curso dinámico desde Google Sheets
+async function loadPlanCursoDynamic(container) {
+    container.innerHTML = `
+        <h2 class="text-xl font-bold text-blue-900 mb-4">Plan de Curso y Ruta de Estudio</h2>
+        <p class="text-slate-400 text-sm">Cargando unidades y contenido desde Google Sheets...</p>
+    `;
+
+    try {
+        const response = await fetch(`${WEB_APP_URL}?action=getPlanCurso`);
+        const planData = await response.json();
+
+        if (!planData || planData.length === 0) {
+            container.innerHTML = `
+                <h2 class="text-xl font-bold text-blue-900 mb-4">Plan de Curso y Ruta de Estudio</h2>
+                <p class="text-slate-500 text-sm">No hay unidades cargadas en la pestaña PlanCurso.</p>
+            `;
+            return;
+        }
+
+        let html = `
+            <h2 class="text-xl font-bold text-blue-900 mb-4">Plan de Curso y Ruta de Estudio</h2>
+            <div class="space-y-4">
+        `;
+
+        planData.forEach(item => {
+            html += `
+                <div class="border border-slate-200 p-4 rounded-xl">
+                    <h4 class="font-bold text-blue-900 mb-2">${item.unidad}</h4>
+                    <ul class="text-sm text-slate-600 space-y-1.5 list-disc list-inside">
+            `;
+
+            item.temas.forEach(tema => {
+                html += `<li>${tema}</li>`;
+            });
+
+            html += `
+                    </ul>
+                </div>
+            `;
+        });
+
+        html += `</div>`;
+        container.innerHTML = html;
+
+    } catch (e) {
+        console.error("Error al cargar Plan de Curso:", e);
+        container.innerHTML = `
+            <h2 class="text-xl font-bold text-blue-900 mb-4">Plan de Curso y Ruta de Estudio</h2>
+            <p class="text-red-500 text-sm">Error al obtener los datos del Plan de Curso.</p>
+        `;
     }
 }
 
