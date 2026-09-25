@@ -46,7 +46,7 @@ const siteContent = {
                     </li>
                 </ol>
             </p>
-            <p> Dependiendo de la carrera deberas utilizar alguno de estos textos</p>
+            <p class="mt-4"> Dependiendo de la carrera deberás utilizar alguno de estos textos:</p>
             <ol class="list-decimal list-inside mt-2 space-y-1">
                 <li class="font-bold text-blue-900">
                      <a href="https://drive.google.com/file/d/1UNT-QvUN_jI0FY9-ib0v0D6R27DE3zVy/view?usp=sharing" target="_blank" class="underline"> 175 </a>
@@ -66,7 +66,6 @@ const siteContent = {
             <p class="text-slate-600 mb-4">Para un estudiante nuevo en la Universidad Nacional Abierta (UNA), adaptarse a la modalidad a distancia es más sencillo si sigues esta ruta de trabajo ordenada:</p>
 
             <div class="space-y-4">
-                <!-- Paso 1 -->
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900 mb-1">1. Conoce las reglas del juego (Plan de Curso e Instructivo Oficial)</h4>
                     <ul class="list-disc list-inside space-y-1 text-slate-600 text-sm">
@@ -84,7 +83,6 @@ const siteContent = {
                     </ul>
                 </div>
 
-                <!-- Paso 2 -->
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900 mb-1">2. Revisa los Objetivos y contacta a tu Asesor</h4>
                     <ul class="list-disc list-inside space-y-1 text-slate-600 text-sm">
@@ -93,7 +91,6 @@ const siteContent = {
                     </ul>
                 </div>
 
-                <!-- Paso 3 -->
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900 mb-1">3. Busca tus Objetivos y Materiales en la App</h4>
                     <p class="text-slate-600 text-sm">Dirígete a la sección <strong>"Plan de Curso"</strong> de esta plataforma:</p>
@@ -103,13 +100,11 @@ const siteContent = {
                     </ul>
                 </div>
 
-                <!-- Paso 4 -->
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900 mb-1">4. Asiste a las Jornadas de Orientación</h4>
                     <p class="text-slate-600 text-sm">Revisa la programación de las clases y jornadas de orientación presenciales o virtuales organizadas por tu Centro Local. Confirma qué objetivos se tratarán para repasarlos previamente en la app y llegar con dudas concretas.</p>
                 </div>
 
-                <!-- Paso 5 -->
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900 mb-1">5. Práctica con Libros, Ejemplos y Quizzes</h4>
                     <ul class="list-disc list-inside space-y-1 text-slate-600 text-sm">
@@ -118,7 +113,6 @@ const siteContent = {
                     </ul>
                 </div>
 
-                <!-- Paso 6 -->
                 <div class="border border-slate-200 p-4 rounded-xl">
                     <h4 class="font-bold text-blue-900 mb-1">6. Entrena con Exámenes Viejos y Problemas Resueltos</h4>
                     <p class="text-slate-600 text-sm">Cuando te aproximes a la fecha del TSP, entra a la sección de <strong>"Exámenes Viejos"</strong> en el menú lateral. Selecciona el objetivo a evaluar y resuelve modelos anteriores guiándote paso a paso.</p>
@@ -163,7 +157,6 @@ async function fetchQuestions() {
     const questionTextEl = document.getElementById('question-text');
     let loadedFromLocal = false;
 
-    // FASE 1: Precarga instantánea desde CSV Local
     try {
         const localResponse = await fetch('./preguntas.csv');
         if (localResponse.ok) {
@@ -178,14 +171,13 @@ async function fetchQuestions() {
             }
         }
     } catch (e) {
-        console.warn("No se encontró preguntas.csv local o falló su lectura. Esperando red...", e);
+        console.warn("No se encontró preguntas.csv local o falló su lectura.", e);
     }
 
     if (!loadedFromLocal && questionTextEl) {
         questionTextEl.innerText = "Conectando con la base de datos remota...";
     }
 
-    // FASE 2: Sincronización en segundo plano con Google Sheets
     try {
         const response = await fetch(`${WEB_APP_URL}?sheet=Preguntas`);
         const remoteData = await response.json();
@@ -193,7 +185,6 @@ async function fetchQuestions() {
         if (Array.isArray(remoteData) && remoteData.length > 0) {
             const normalizedRemote = normalizeQuestionsKeys(remoteData);
             
-            // Actualizar si hay diferencias o si no se cargó el CSV
             if (!loadedFromLocal || JSON.stringify(allQuestions) !== JSON.stringify(normalizedRemote)) {
                 allQuestions = normalizedRemote;
                 populateObjectiveButtons();
@@ -354,7 +345,6 @@ function loadQuestionsForCurrentObjective() {
         { text: qData.Opcion3_Incorrecta2, correct: false }
     ].filter(opt => opt.text && String(opt.text).trim() !== "");
 
-    // Mezclar las opciones al azar
     for (let i = optionsArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [optionsArray[i], optionsArray[j]] = [optionsArray[j], optionsArray[i]];
@@ -407,10 +397,8 @@ function submitQuiz() {
         btn.disabled = true;
     }
 
-    // Evaluar resultado localmente para retroalimentación inmediata
     const isCorrect = selectedAnswerCorrect;
 
-    // Enviar resultado a Google Sheets
     fetch(WEB_APP_URL, {
         method: "POST",
         headers: { "Content-Type": "text/plain" },
@@ -458,6 +446,7 @@ function showFeedbackResult(isCorrect) {
         `;
     }
 }
+
 function logoutUser() {
     if(timerInterval) clearInterval(timerInterval);
     localStorage.removeItem('mateuna_user');
@@ -510,7 +499,7 @@ function showSection(sectionKey) {
     } else if (sectionKey === 'clases') {
         loadSheetDataAsTable('Clases', dynamicView, 'Fechas y Horarios de Clases');
     } else if (sectionKey === 'plan') {
-        loadPlanCursoDynamic('plan', dynamicView, 'Plan de Curso de la Materia');
+        loadPlanCursoDynamic(dynamicView); // CORREGIDO: Se pasa la referencia del elemento HTML directamente
     } else if (sectionKey === 'viejos') {
         loadSheetDataAsTable('Viejos', dynamicView, 'Archivo de Exámenes Anteriores');
     }
@@ -763,7 +752,7 @@ function toggleMobileMenu() {
         sidebar.classList.toggle('hidden');
     }
 }
-// Registro de Service Worker para PWA
+
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js')
