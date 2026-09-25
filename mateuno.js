@@ -536,8 +536,19 @@ async function loadPlanCursoDynamic(container) {
                     <ul class="text-sm text-slate-600 space-y-1.5 list-disc list-inside">
             `;
 
-            item.temas.forEach(tema => {
-                html += `<li>${tema}</li>`;
+            item.temas.forEach(temaObj => {
+                // Si la celda de link no está vacía, genera la etiqueta <a> estilizada
+                if (temaObj.link) {
+                    html += `
+                        <li>
+                            <a href="${temaObj.link}" target="_blank" class="text-blue-700 hover:text-blue-900 underline font-medium transition">
+                                ${temaObj.texto} ↗
+                            </a>
+                        </li>
+                    `;
+                } else {
+                    html += `<li>${temaObj.texto}</li>`;
+                }
             });
 
             html += `
